@@ -28,7 +28,7 @@
                         <div class="card overflow-hidden card-bg-fill border-0 card-border-effect-none">
                             <div class="row g-0">
                                 <div class="col-lg-6">
-                                    <img src="{{ asset('admin/images/fms-banner.jpg') }}" alt="" width="100%" height="100%">
+                                    <img src="{{ asset('admin/images/banner.jpg') }}" alt="" width="100%" height="100%">
                                     <div class="p-lg-5 p-4 auth-one-bg h-100 d-none">
                                         <div class="bg-overlay"></div>
                                         <div class="position-relative h-100 d-flex flex-column">
@@ -64,8 +64,8 @@
                                 <div class="col-lg-6">
                                     <div class="p-lg-4 p-4">
                                         <div class="text-center">
-                                            <img  src="{{ asset('admin/images/login-logo.png') }}" height="50%" width="50%" alt="">
-                                            <h5 class="text-white text-center pt-3">लॉगिन मध्ये आपले स्वागत आहे</h5>
+                                            <img  src="{{ asset('admin/images/TMC.png') }}" height="40%" width="40%" alt="">
+                                            <h5 class="text-white text-center pt-3">Welcome To Login</h5>
                                             {{-- <p class="text-muted text-center">Sign in to continue to {{ config('app.name') }}.</p> --}}
                                         </div>
 
