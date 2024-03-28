@@ -16,7 +16,7 @@ class DashboardController extends Controller
         $today = Carbon::today();
         // Today's net collection sum
         $todayNetCollectionSum = WeightMachine::whereDate('created_at', $today)->sum('NetWt');
-        $latestVehicle = WeightMachine::orderBy('created_at','desc')->take(5)->get();
+        $latestVehicle = WeightMachine::orderBy('id','desc')->take(5)->get();
 
         $todayCollectionDetails = WeightMachine::selectRaw('SUM(NetWt) as net_weight, SUM(GrossWt) as gross_weight, SUM(TareWt) as tare_weight')
         ->whereDate('created_at', $today)
