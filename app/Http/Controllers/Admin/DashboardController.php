@@ -4,16 +4,41 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
+use App\Models\WeightMachine;
 
 class DashboardController extends Controller
 {
 
     public function index()
     {
-        $todaysSlipList = [];
-        $equipment_list = [];
-        $vehicle_history_details = [];
-        return view('admin.dashboard',compact('todaysSlipList', 'equipment_list', 'vehicle_history_details'));
+        $today = Carbon::today();
+        // Today's net collection sum
+        $todayNetCollectionSum = WeightMachine::whereDate('created_at', $today)->sum('NetWt');
+        $latestVehicle = WeightMachine::orderBy('created_at','desc')->take(5)->get();
+
+        $todayCollectionDetails = WeightMachine::selectRaw('SUM(NetWt) as net_weight, SUM(GrossWt) as gross_weight, SUM(TareWt) as tare_weight')
+        ->whereDate('created_at', $today)
+        ->first();
+
+        // Monthly net collection sum
+        $monthlyNetCollectionSum = WeightMachine::whereYear('created_at', $today->year)
+        ->whereMonth('created_at', $today->month)
+        ->sum('NetWt');
+
+        // Yearly net collection sum
+        $yearlyNetCollectionSum = WeightMachine::whereYear('created_at', $today->year)->sum('NetWt');
+
+        // Vendor count and Vehicle count
+        $vendorAndVehicleCount = WeightMachine::selectRaw('COUNT(DISTINCT Party_Name) as vendor_count, COUNT(DISTINCT Vehicle_No) as vehicle_count')
+        ->first();
+
+        // Extract counts from the result
+        $vendorCount = $vendorAndVehicleCount->vendor_count;
+        $vehicleCount = $vendorAndVehicleCount->vehicle_count;
+
+        return view('admin.dashboard',compact('todayNetCollectionSum', 'latestVehicle', 'todayCollectionDetails', 'monthlyNetCollectionSum', 'yearlyNetCollectionSum', 'vendorAndVehicleCount', 'vendorCount', 'vehicleCount'));
     }
 
     public function changeThemeMode()

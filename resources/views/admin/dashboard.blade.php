@@ -17,19 +17,19 @@
 
     {{-- new dashboard --}}
     <div class="row">
-        <div class="col-xl-6">
+        <div class="col-xl-8">
             <div class="d-flex flex-column h-100">
                 <div class="row">
-                    <div class="col-xl-6 col-md-6">
+                    <div class="col-xl-4 col-md-4">
                         <div class="card card-animate" id="totalSlipsCardNew">
                             <div class="card-body" style="background-color: papayawhip">
                                 <div class="d-flex justify-content-between">
                                     <div>
                                         <a class="fw-medium text-muted mb-0">
-                                            <b>Total No Of Vendors</b>
+                                            <b>Todays's Net Collection</b>
                                         </a>
                                         <h2 class="mt-4 ff-secondary fw-semibold">
-                                            <span class="counter-value text-primary" data-target="0">0</span>
+                                            <span class="counter-value text-primary" data-target="{{ $todayNetCollectionSum }}">{{ $todayNetCollectionSum }}</span>
                                         </h2>
                                         <p class="mb-0 text-muted" style="display: none">
                                             <span class="badge bg-light text-success mb-0"><i class="ri-arrow-up-line align-middle"></i>
@@ -52,17 +52,17 @@
                         </div>
                         <!-- end card-->
                     </div><!--end col-->
-                    <div class="col-xl-6 col-md-6">
+                    <div class="col-xl-4 col-md-4">
                         <!-- card -->
                         <div class="card card-animate" id="todaySlipsCardNew">
                             <div class="card-body" style="background-color: deepskyblue">
                                 <div class="d-flex justify-content-between">
                                     <div>
                                         <a class="fw-medium text-muted mb-0">
-                                            <b>Total No Of Vehicle</b>
+                                            <b>Monthly Net Collection</b>
                                         </a>
                                         <h2 class="mt-4 ff-secondary fw-semibold">
-                                            <span class="counter-value text-primary" data-target="0">0</span>
+                                            <span class="counter-value text-primary" data-target="{{ $monthlyNetCollectionSum }}">{{ $monthlyNetCollectionSum }}</span>
                                         </h2>
                                         <p class="mb-0 text-muted" style="display: none">
                                             <span class="badge bg-light text-success mb-0"><i class="ri-arrow-up-line align-middle"></i>
@@ -85,17 +85,17 @@
                         </div>
                         <!-- end card-->
                     </div><!-- end col -->
-                    <div class="col-xl-6 col-md-6">
+                    <div class="col-xl-4 col-md-4">
                         <!-- card -->
                         <div class="card card-animate" id="monthlySlipsCardNew">
                             <div class="card-body" style="background-color: mistyrose">
                                 <div class="d-flex justify-content-between">
                                     <div>
                                         <a class="fw-medium text-muted mb-0">
-                                           <b> Today's Total Collection</b>
+                                           <b> Yearly Net Collection</b>
                                         </a>
                                         <h2 class="mt-4 ff-secondary fw-semibold">
-                                            <span class="counter-value text-primary" data-target="0">0</span>
+                                            <span class="counter-value text-primary" data-target="{{ $yearlyNetCollectionSum }}">{{ $yearlyNetCollectionSum }}</span>
                                         </h2>
                                         <p class="mb-0 text-muted" style="display: none">
                                             <span class="badge bg-light text-danger mb-0">
@@ -119,17 +119,17 @@
                         </div>
                         <!-- end card-->
                     </div><!-- end col -->
-                    <div class="col-xl-6 col-md-6">
+                    <div class="col-xl-4 col-md-4">
                         <!-- card -->
                         <div class="card card-animate" id="yearlySlipsCardNew">
                             <div class="card-body" style="background-color: skyblue">
                                 <div class="d-flex justify-content-between">
                                     <div>
                                         <a class="fw-medium text-muted mb-0">
-                                            <b>Yearly Total Collection</b>
+                                            <b>Vendor Count</b>
                                         </a>
                                         <h2 class="mt-4 ff-secondary fw-semibold">
-                                            <span class="counter-value text-primary" data-target="0">0</span>
+                                            <span class="counter-value text-primary" data-target="{{ $vendorCount }}">{{ $vendorCount }}</span>
                                         </h2>
                                         <p class="mb-0 text-muted" style="display: none">
                                             <span class="badge bg-light text-danger mb-0">
@@ -153,17 +153,17 @@
                         </div>
                         <!-- end card-->
                     </div><!-- end col -->
-                    <div class="col-xl-6 col-md-6 d-none">
+                    <div class="col-xl-4 col-md-4">
                         {{-- card --}}
                         <div class="card card-animate" id="actiontakenSlipsNew" style="background-color: lemonchiffon">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between">
                                     <div>
                                         <a class="fw-medium text-muted mb-0">
-                                            <b>Action Taken Slips(कारवाई केलेल्या स्लिप्स)</b>
+                                            <b>Vehicle Count</b>
                                         </a>
                                         <h2 class="mt-4 ff-secondary fw-semibold">
-                                            <span class="counter-value text-primary" data-target="0">0</span>
+                                            <span class="counter-value text-primary" data-target="{{ $vehicleCount }}">{{ $vehicleCount }}</span>
                                         </h2>
                                         <p class="mb-0 text-muted" style="display: none">
                                             <span class="badge bg-light text-success mb-0">
@@ -187,17 +187,17 @@
                         </div>
                         <!-- end card-->
                     </div><!--end col-->
-                    <div class="col-xl-6 col-md-6 d-none">
+                    <div class="col-xl-4 col-md-4">
                         <!-- card -->
                         <div class="card card-animate" id="vardiahavalSlipsCardNew">
                             <div class="card-body" style="background-color: paleturquoise">
                                 <div class="d-flex justify-content-between">
                                     <div>
                                         <a class="fw-medium text-muted mb-0">
-                                            <b>Vardi Ahaval(वर्दी अहवाल)</b>
+                                            <b>Weigh Bridge Count</b>
                                         </a>
                                         <h2 class="mt-4 ff-secondary fw-semibold">
-                                            <span class="counter-value text-primary" data-target="0">0</span>
+                                            <span class="counter-value text-primary" data-target="1">1</span>
                                         </h2>
                                         <p class="mb-0 text-muted" style="display: none">
                                             <span class="badge bg-light text-success mb-0">
@@ -222,104 +222,103 @@
                         <!-- end card-->
                     </div><!-- end col -->
                 </div><!--end row-->
+                {{-- Today's Total Collection --}}
+                <div class="card border-primary card-height-100" style="display: block">
+                    <div class="card-header bg-primary align-items-center d-flex">
+                        <h4 class="card-title text-white mb-0 flex-grow-1">
+                            Today's Collection Details
+                        </h4>
+                        <div>
+                            <a href="#" class="btn btn-soft-secondary btn-sm d-none">
+                                View All
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="users-by-country" data-colors='["--vz-light"]' class="text-center d-none" style="height: 252px"></div>
+    
+                        <div class="table-responsive">
+                            <table id="stockDetailsNew" class="table table-bordered nowrap align-middle" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Gross Weight</th>
+                                        <th>Tare Weight</th>
+                                        <th>Net Weight</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                            <td>{{ $todayCollectionDetails->gross_weight ?? 0 }}</td>
+                                            <td>{{ $todayCollectionDetails->tare_weight ?? 0 }}</td>
+                                            <td>{{ $todayCollectionDetails->net_weight ?? 0 }}</td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- end card body -->
+                </div>
+                <!-- end card -->
+
             </div>
         </div><!--end col-->
 
-        <div class="col-xl-6">
+        <div class="col-xl-4">
             <div class="card border-primary card-height-100">
                 <div class="card-header bg-primary align-items-center d-flex">
-                    <h4 class="card-title text-white mb-0 flex-grow-1">Today's List (आजची यादी)</h4>
+                    <h4 class="card-title text-white mb-0 flex-grow-1">Latest Vehicle Net Collection List</h4>
                     <div class="flex-shrink-0">
-                        <a href="#" class="btn btn-soft-primary btn-sm">
+                        <a href="#" class="btn btn-soft-primary btn-sm d-none">
                             View All
                         </a>
                     </div>
                 </div><!-- end card header -->
                 <!-- card body -->
                 <div class="card-body">
-                    @php
-                        $serialNumber = 1;
-                    @endphp
-                    <div id="users-by-country" data-colors='["--vz-light"]' class="text-center d-none" style="height: 252px"></div>
-
-                    <div class="table-responsive">
-                        <table id="todaysListNew" class="table table-bordered nowrap align-middle" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th>Sr.No</th>
-                                    <th>Caller Name</th>
-                                    <th>Date</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($todaysSlipList as $list)
-                                    <tr>
-                                        <td>{{ $serialNumber++ }}</td>
-                                        <td>{{ $list->caller_name }}</td>
-                                        <td>{{ $list->slip_date }}</td>
-                                        <td>
-                                            <button class="download-pdf btn btn-secondary px-2 py-1"
-                                                    title="Download PDF"
-                                                    data-id="{{ $list->slip_id }}"
-                                                    data-pdf-file-name="{{ $list->pdf_name }}"
-                                            >
-                                                <i data-feather="download"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                    @foreach($latestVehicle as $list)
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="card-text"><strong>Vehicle No: </strong> {{$list->Vehicle_No}}</p>
+                                <p class="card-text"><strong>Net Collection: </strong> {{$list->NetWt}}</p>
+                                <p class="card-text"><strong>Date & Time: </strong> {{$list->Net_Date}}</p>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
                 <!-- end card body -->
             </div> <!-- .card-->
         </div><!--end col-->
 
-        <div class="col-xl-6">
+        <div class="col-xl-8 d-none">
             <div class="card border-primary card-height-100" style="display: block">
                 <div class="card-header bg-primary align-items-center d-flex">
                     <h4 class="card-title text-white mb-0 flex-grow-1">
-                        Equipments Stock Details (उपकरणे स्टॉक तपशील)
+                        Today's Collection Details
                     </h4>
                     <div>
-                        <a href="#" class="btn btn-soft-secondary btn-sm">
+                        <a href="#" class="btn btn-soft-secondary btn-sm d-none">
                             View All
                         </a>
                     </div>
                 </div>
                 <div class="card-body">
-                    @php
-                        $serialNumber = 1;
-                    @endphp
                     <div id="users-by-country" data-colors='["--vz-light"]' class="text-center d-none" style="height: 252px"></div>
 
                     <div class="table-responsive">
                         <table id="stockDetailsNew" class="table table-bordered nowrap align-middle" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>Sr.No</th>
-                                    <th>Equipment</th>
-                                    {{-- <th>Total Stock</th> --}}
-                                    <th>Remaining Stock</th>
-                                    <th>InProcess Stock</th>
-                                    <th>Expire Stock</th>
-                                    {{-- <th>Overall Supply Stock</th> --}}
+                                    <th>Gross Weight</th>
+                                    <th>Tare Weight</th>
+                                    <th>Net Weight</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($equipment_list as $list)
                                     <tr>
-                                        <td>{{ $serialNumber++ }}</td>
-                                        <td>{{ $list->equipment_name }}</td>
-                                        {{-- <td>{{ $list->total_stock ?: '0' }}</td> --}}
-                                        <td>{{ $list->total_stock - $list->total_supply_quantity ?: '0' }}</td>
-                                        <td>{{ $list->total_supply_quantity - $list->total_expire_quantity ?: '0' }}</td>
-                                        <td>{{ $list->total_expire_quantity ?: '0' }}</td>
-                                        {{-- <td>{{ $list->total_supply_quantity ?: '0' }}</td> --}}
+                                        <td>{{ $todayCollectionDetails->gross_weight ?? 0 }}</td>
+                                        <td>{{ $todayCollectionDetails->tare_weight ?? 0 }}</td>
+                                        <td>{{ $todayCollectionDetails->net_weight ?? 0 }}</td>
                                     </tr>
-                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -329,55 +328,7 @@
             <!-- end card -->
         </div><!--end col-->
 
-        <div class="col-xl-6">
-            <div class="card border-primary card-height-100" style="display: block">
-                <div class="card-header bg-primary align-items-center d-flex">
-                    <h4 class="card-title text-white mb-0 flex-grow-1">
-                        Vehicle History (वाहन इतिहास)
-                    </h4>
-                    <div>
-                        <a href="#" class="btn btn-soft-secondary btn-sm">
-                            View All
-                        </a>
-                    </div>
-                </div>
-                <div class="card-body">
-                    @php
-                        $serialNumber = 1;
-                    @endphp
-                    <div id="users-by-country" data-colors='["--vz-light"]' class="text-center d-none" style="height: 252px"></div>
-
-                    <div class="table-responsive">
-                        <table id="vehicledetails" class="table table-bordered nowrap align-middle" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th>Sr.No</th>
-                                    <th>Vehicle Name</th>
-                                    <th>Vehicle Number</th>
-                                    <th>PUC Expire Date</th>
-                                    <th>Insurance Expire Date</th>
-                                    <th>Fitness Expire Date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($vehicle_history_details as $list)
-                                    <tr>
-                                        <td>{{ $serialNumber++ }}</td>
-                                        <td>{{ $list->vehicle_name }}</td>
-                                        <td>{{ $list->vehicle_no }}</td>
-                                        <td>{{ $list->puc_end_date }}</td>
-                                        <td>{{ $list->insurance_end_date }}</td>
-                                        <td>{{ $list->vehicle_fitness_end_date }}</td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <!-- end card body -->
-            </div>
-            <!-- end card -->
-        </div><!--end col-->
+        
 
 
 
