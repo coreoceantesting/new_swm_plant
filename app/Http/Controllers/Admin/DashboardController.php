@@ -10,7 +10,10 @@ class DashboardController extends Controller
 
     public function index()
     {
-        return view('admin.dashboard');
+        $todaysSlipList = [];
+        $equipment_list = [];
+        $vehicle_history_details = [];
+        return view('admin.dashboard',compact('todaysSlipList', 'equipment_list', 'vehicle_history_details'));
     }
 
     public function changeThemeMode()

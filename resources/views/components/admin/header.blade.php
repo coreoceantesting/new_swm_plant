@@ -33,7 +33,7 @@
 
                 <!-- App Search-->
                 <form class="app-search d-none d-md-block">
-                    <div class="position-relative">
+                    <div class="position-relative d-none">
                         <input type="text" class="form-control" placeholder="Search..." autocomplete="off" id="search-options" value="" />
                         <span class="mdi mdi-magnify search-widget-icon"></span>
                         <span class="mdi mdi-close-circle search-widget-icon search-widget-icon-close d-none" id="search-close-options"></span>
@@ -154,13 +154,13 @@
                 </div>
 
 
-                <div class="ms-1 header-item d-none d-sm-flex">
+                <div class="ms-1 header-item d-none">
                     <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle" data-toggle="fullscreen">
                         <i class="bx bx-fullscreen fs-22"></i>
                     </button>
                 </div>
 
-                <div class="ms-1 header-item d-none d-sm-flex">
+                <div class="ms-1 header-item d-none">
                     <button type="button" id="change-theme-button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle light-dark-mode">
                         <i class="bx bx-moon fs-22"></i>
                     </button>
