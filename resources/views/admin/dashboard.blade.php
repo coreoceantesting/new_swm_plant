@@ -328,6 +328,139 @@
             <!-- end card -->
         </div><!--end col-->
 
+        <div class="col-xl-12">
+            <div class="card border-primary card-height-100">
+                <div class="card-header bg-primary align-items-center d-flex">
+                    <h4 class="card-title text-center text-white mb-0 flex-grow-1">
+                        Amol Transport Collection Details
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3" style="padding-left:0px;padding-right:0px;">
+                            <div class="card">
+                                <div class="card-header bg-primary align-items-center d-flex">
+                                    <h4 class="card-title text-white mb-0 flex-grow-1 text-center">
+                                        Todays
+                                    </h4>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table" style="width: 100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Gross</th>
+                                                <th>Tare</th>
+                                                <th>Net</th>
+                                                <th>Round</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>975975</td>
+                                                <td>975975</td>
+                                                <td>975975</td>
+                                                <td>975975</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3" style="padding-left:0px;padding-right:0px;">
+                            <div class="card">
+                                <div class="card-header bg-primary align-items-center d-flex">
+                                    <h4 class="card-title text-center text-white mb-0 flex-grow-1">
+                                        Current Month
+                                    </h4>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Gross</th>
+                                                <th>Tare</th>
+                                                <th>Net</th>
+                                                <th>Round</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>0</td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3" style="padding-left:0px;padding-right:0px;">
+                            <div class="card">
+                                <div class="card-header bg-primary align-items-center d-flex">
+                                    <h4 class="card-title text-center text-white mb-0 flex-grow-1">
+                                        Previous Month
+                                    </h4>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Gross</th>
+                                                <th>Tare</th>
+                                                <th>Net</th>
+                                                <th>Round</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>0</td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3" style="padding-left:0px;padding-right:0px;">
+                            <div class="card">
+                                <div class="card-header bg-primary align-items-center d-flex">
+                                    <h4 class="card-title text-center text-white mb-0 flex-grow-1">
+                                        Current Year
+                                    </h4>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Gross</th>
+                                                <th>Tare</th>
+                                                <th>Net</th>
+                                                <th>Round</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>0</td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         
 
 
