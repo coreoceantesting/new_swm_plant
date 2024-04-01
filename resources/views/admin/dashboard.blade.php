@@ -356,10 +356,10 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>975975</td>
-                                                <td>975975</td>
-                                                <td>975975</td>
-                                                <td>975975</td>
+                                                <td>{{round($todayCollectionDetailsVendorOne->gross_weight) ?? 0}}</td>
+                                                <td>{{round($todayCollectionDetailsVendorOne->tare_weight) ?? 0}}</td>
+                                                <td>{{round($todayCollectionDetailsVendorOne->net_weight) ?? 0}}</td>
+                                                <td>{{$todayCollectionDetailsVendorOne->todays_round}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -386,10 +386,10 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>0</td>
-                                                <td>0</td>
-                                                <td>0</td>
-                                                <td>0</td>
+                                                <td>{{round($currentMonthCollectionDetailsVendorOne->gross_weight) ?? 0}}</td>
+                                                <td>{{round($currentMonthCollectionDetailsVendorOne->tare_weight) ?? 0}}</td>
+                                                <td>{{round($currentMonthCollectionDetailsVendorOne->net_weight) ?? 0}}</td>
+                                                <td>{{$currentMonthCollectionDetailsVendorOne->current_month_rounds}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -416,10 +416,10 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>0</td>
-                                                <td>0</td>
-                                                <td>0</td>
-                                                <td>0</td>
+                                                <td>{{round($previousMonthCollectionDetailsVendorOne->gross_weight) ?? 0}}</td>
+                                                <td>{{round($previousMonthCollectionDetailsVendorOne->tare_weight) ?? 0}}</td>
+                                                <td>{{round($previousMonthCollectionDetailsVendorOne->net_weight) ?? 0}}</td>
+                                                <td>{{$previousMonthCollectionDetailsVendorOne->rounds}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -446,10 +446,10 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>0</td>
-                                                <td>0</td>
-                                                <td>0</td>
-                                                <td>0</td>
+                                                <td>{{round($currentYearCollectionDetailsVendorOne->gross_weight) ?? 0}}</td>
+                                                <td>{{round($currentYearCollectionDetailsVendorOne->tare_weight) ?? 0}}</td>
+                                                <td>{{round($currentYearCollectionDetailsVendorOne->net_weight) ?? 0}}</td>
+                                                <td>{{$currentYearCollectionDetailsVendorOne->current_year_rounds}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
