@@ -461,6 +461,50 @@
             </div>
         </div>
 
+        <div class="col-xl-6">
+            <div class="card border-primary card-height-100">
+                <div class="card-header bg-primary align-items-center d-flex">
+                    <h4 class="card-title text-white mb-0 flex-grow-1">
+                        Monthly VendorWise Collection
+                    </h4>
+                    <select id="month-dropdown">
+                        <option value="1" {{ date('n') == 1 ? 'selected' : '' }}>Jan</option>
+                        <option value="2" {{ date('n') == 2 ? 'selected' : '' }}>Feb</option>
+                        <option value="3" {{ date('n') == 3 ? 'selected' : '' }}>Mar</option>
+                        <option value="4" {{ date('n') == 4 ? 'selected' : '' }}>Apr</option>
+                        <option value="5" {{ date('n') == 5 ? 'selected' : '' }}>May</option>
+                        <option value="6" {{ date('n') == 6 ? 'selected' : '' }}>Jun</option>
+                        <option value="7" {{ date('n') == 7 ? 'selected' : '' }}>Jul</option>
+                        <option value="8" {{ date('n') == 8 ? 'selected' : '' }}>Aug</option>
+                        <option value="9" {{ date('n') == 9 ? 'selected' : '' }}>Sep</option>
+                        <option value="10" {{ date('n') == 10 ? 'selected' : '' }}>Oct</option>
+                        <option value="11" {{ date('n') == 11 ? 'selected' : '' }}>Nov</option>
+                        <option value="12" {{ date('n') == 12 ? 'selected' : '' }}>Dec</option>
+                    </select>
+                </div>
+                <div class="card-body">
+                    <div class="col-md-12">
+                        <canvas id="monthly-collection-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-xl-6">
+            <div class="card border-primary card-height-100">
+                <div class="card-header bg-primary align-items-center d-flex">
+                    <h4 class="card-title text-white mb-0 flex-grow-1">
+                        Daily Net Collection
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="col-md-12">
+                        <canvas id="daily-collection-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         
 
 
@@ -566,7 +610,136 @@
         });
     </script> --}}
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#month-dropdown').change(function() {
+                var selectedMonth = $(this).val();
+                $.ajax({
+                    url: '/monthly-collection',
+                    type: 'GET',
+                    data: { month: selectedMonth },
+                    success: function(response) {
+                        updateChart(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            });
+        });
+    
+        var ctx = document.getElementById('monthly-collection-chart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Monthly Collection',
+                    data: [],
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Weight (ton)'
+                        }
+                    }],
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Vendor Name'
+                        }
+                    }]
+                }
+            }
+        });
+    
+        function updateChart(data) {
+            var vendorNames = [];
+            var totalWeights = [];
+            data.forEach(function(item) {
+                vendorNames.push(item.Party_Name);
+                totalWeights.push(item.total_weight);
+            });
+            myChart.data.labels = vendorNames;
+            myChart.data.datasets[0].data = totalWeights;
+            myChart.update();
+        }
+    </script>
 
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: '/daily-collection',
+                type: 'GET',
+                success: function(response) {
+                    updateChartNew(response);
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
+        
+        var ctx = document.getElementById('daily-collection-chart').getContext('2d');
+        var myChartNew = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [],
+                datasets: []
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Weight (ton)'
+                        }
+                    }],
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Date'
+                        }
+                    }]
+                }
+            }
+        });
+    
+        function updateChartNew(data) {
+            var vendors = Object.keys(data);
+            vendors.forEach(function(vendor) {
+                var vendorData = data[vendor];
+                var dates = [];
+                var totalWeights = [];
+                vendorData.forEach(function(item) {
+                    dates.push(item.date);
+                    totalWeights.push(item.total_weight);
+                });
+                myChartNew.data.labels = dates;
+                myChartNew.data.datasets.push({
+                    label: vendor,
+                    data: totalWeights,
+                    backgroundColor: 'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',0.2)',
+                    borderColor: 'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',1)',
+                    borderWidth: 1
+                });
+            });
+            myChartNew.update();
+        }
+    </script>
 
     @endpush
 

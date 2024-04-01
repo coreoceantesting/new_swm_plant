@@ -68,6 +68,11 @@ Route::middleware(['auth','PreventBackHistory'])->group(function()
     Route::get('vendorWiseReport', [App\Http\Controllers\ReportController::class, 'vendorWiseReport' ])->name('vendorWiseReport');
     Route::get('summaryReport', [App\Http\Controllers\ReportController::class, 'summaryReport' ])->name('summaryReport');
 
+    // bar chart
+    Route::get('/monthly-collection', [App\Http\Controllers\Admin\DashboardController::class, 'getMonthlyCollectionData']);
+    Route::get('/daily-collection', [App\Http\Controllers\Admin\DashboardController::class, 'getDailyCollectionData']);
+
+
 
 });
 

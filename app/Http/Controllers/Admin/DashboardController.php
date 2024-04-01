@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
@@ -71,6 +72,39 @@ class DashboardController extends Controller
         $vehicleCount = $vendorAndVehicleCount->vehicle_count;
 
         return view('admin.dashboard',compact('todayNetCollectionSum', 'previousMonthCollectionDetailsVendorOne', 'currentMonthCollectionDetailsVendorOne', 'currentYearCollectionDetailsVendorOne' ,'todayCollectionDetailsVendorOne', 'latestVehicle', 'todayCollectionDetails', 'monthlyNetCollectionSum', 'yearlyNetCollectionSum', 'vendorAndVehicleCount', 'vendorCount', 'vehicleCount'));
+    }
+
+    public function getMonthlyCollectionData(Request $request)
+    {
+        $month = $request->has('month') ? $request->month : now()->month;
+        $monthlyData = WeightMachine::selectRaw('Party_Name, SUM(NetWt) as total_weight')
+                        ->whereMonth('created_at', $request->month)
+                        ->groupBy('Party_Name')
+                        ->get();
+
+        return response()->json($monthlyData);
+    }
+
+    public function getDailyCollectionData()
+    {
+        $today = now();
+        $startOfMonth = $today->startOfMonth();
+        $endOfMonth = $today->endOfMonth();
+
+        $vendors = WeightMachine::select('Party_Name')->distinct()->pluck('Party_Name');
+
+        $monthlyData = [];
+        foreach ($vendors as $vendor) {
+            $vendorData = WeightMachine::selectRaw('DATE(created_at) as date, SUM(NetWt) as total_weight')
+                        ->where('Party_Name', $vendor)
+                        // ->whereBetween('created_at', [$startOfMonth, $endOfMonth])
+                        ->groupBy('date')
+                        ->orderBy('date')
+                        ->get();
+            $monthlyData[$vendor] = $vendorData;
+        }
+
+        return response()->json($monthlyData);
     }
 
     public function changeThemeMode()
