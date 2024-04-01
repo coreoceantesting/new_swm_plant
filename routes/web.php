@@ -69,8 +69,8 @@ Route::middleware(['auth','PreventBackHistory'])->group(function()
     Route::get('summaryReport', [App\Http\Controllers\ReportController::class, 'summaryReport' ])->name('summaryReport');
 
     // bar chart
-    Route::get('/monthly-collection', [App\Http\Controllers\Admin\DashboardController::class, 'getMonthlyCollectionData']);
-    Route::get('/daily-collection', [App\Http\Controllers\Admin\DashboardController::class, 'getDailyCollectionData']);
+    Route::get('/monthly-collection', [App\Http\Controllers\Admin\DashboardController::class, 'getMonthlyCollectionData'])->name('montly.collection');
+    Route::get('/daily-collection', [App\Http\Controllers\Admin\DashboardController::class, 'getDailyCollectionData'])->name('daily.collection');
 
 
 

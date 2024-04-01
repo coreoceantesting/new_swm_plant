@@ -616,7 +616,7 @@
             $('#month-dropdown').change(function() {
                 var selectedMonth = $(this).val();
                 $.ajax({
-                    url: '/monthly-collection',
+                    url: '{{ route('montly.collection') }}',
                     type: 'GET',
                     data: { month: selectedMonth },
                     success: function(response) {
@@ -679,7 +679,7 @@
     <script>
         $(document).ready(function() {
             $.ajax({
-                url: '/daily-collection',
+                url: '{{ route('daily.collection') }}',
                 type: 'GET',
                 success: function(response) {
                     updateChartNew(response);
