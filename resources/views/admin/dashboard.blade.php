@@ -613,12 +613,12 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         $(document).ready(function() {
-            $('#month-dropdown').change(function() {
-                var selectedMonth = $(this).val();
+            // Function to fetch monthly collection data
+            function fetchMonthlyCollectionData(month) {
                 $.ajax({
                     url: '{{ route('montly.collection') }}',
                     type: 'GET',
-                    data: { month: selectedMonth },
+                    data: { month: month },
                     success: function(response) {
                         updateChart(response);
                     },
@@ -626,9 +626,33 @@
                         console.error(error);
                     }
                 });
+            }
+    
+            // Function to update the chart with data
+            function updateChart(data) {
+                var vendorNames = [];
+                var totalWeights = [];
+                data.forEach(function(item) {
+                    vendorNames.push(item.Party_Name);
+                    totalWeights.push(item.total_weight);
+                });
+                myChart.data.labels = vendorNames;
+                myChart.data.datasets[0].data = totalWeights;
+                myChart.update();
+            }
+    
+            // Trigger the AJAX request for current month data on document ready
+            var currentMonth = (new Date()).getMonth() + 1; // JavaScript months are 0-indexed
+            fetchMonthlyCollectionData(currentMonth);
+    
+            // Event listener for month dropdown change
+            $('#month-dropdown').change(function() {
+                var selectedMonth = $(this).val();
+                fetchMonthlyCollectionData(selectedMonth);
             });
         });
     
+        // Chart initialization
         var ctx = document.getElementById('monthly-collection-chart').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'bar',
@@ -662,18 +686,6 @@
                 }
             }
         });
-    
-        function updateChart(data) {
-            var vendorNames = [];
-            var totalWeights = [];
-            data.forEach(function(item) {
-                vendorNames.push(item.Party_Name);
-                totalWeights.push(item.total_weight);
-            });
-            myChart.data.labels = vendorNames;
-            myChart.data.datasets[0].data = totalWeights;
-            myChart.update();
-        }
     </script>
 
     <script>
