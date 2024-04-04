@@ -41,7 +41,7 @@ class WeightMachineController extends Controller
             DB::commit();
             return response()->json([
                 'status' => 200,
-                'message' => 'Data Added Successfully'
+                'message' => 'Trip Completed Successfully'
             ]);
         } catch (\Exception $e) {
             Log::info($e);
