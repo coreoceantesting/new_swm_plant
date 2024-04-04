@@ -39,24 +39,57 @@
                             <table id="buttons-datatables" class="table table-bordered nowrap align-middle" style="width:100%">
                                 <thead>
                                     <tr>
+                                        <th>SR.NO</th>
                                         <th>Vendor Name</th>
                                         <th>Date & Time </th>
                                         <th>Vehicle No</th>
                                         <th>Gross Weight</th>
                                         <th>Tare Weight</th>
                                         <th>Net Weight</th>
+                                        <th>Images</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($results as $result)
+                                    @foreach ($results as $index => $result)
                                         <tr>
+                                            <td>{{ $index + 1 }}</td>
                                             <td>{{ $result->Party_Name }}</td>
                                             <td>{{ $result->EntryDate }}</td>
                                             <td>{{ $result->Vehicle_No }}</td>
                                             <td>{{ $result->GrossWt }}</td>
                                             <td>{{ $result->TareWt }}</td>
                                             <td>{{ $result->NetWt }}</td>
+                                            <td>
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $index }}">
+                                                    View
+                                                </button>
+                                                
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal{{ $index }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ $index }}" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel{{ $index }}">Images</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            @for ($i = 1; $i <= 8; $i++)
+                                                                @if ($result->{"Img$i"})
+                                                                    <img src="data:image/png;base64,{{ $result->{"Img$i"} }}" height="200" width="200" alt="Image {{ $i }}">
+                                                                @endif
+                                                            @endfor
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </td>
                                         </tr>
+                                        
                                     @endforeach
                             </table>
                         </div>
