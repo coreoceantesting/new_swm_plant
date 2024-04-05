@@ -268,7 +268,7 @@
                 <div class="card-header bg-primary align-items-center d-flex">
                     <h4 class="card-title text-white mb-0 flex-grow-1">Latest Vehicle Net Collection List</h4>
                     <div class="flex-shrink-0">
-                        <a href="#" class="btn btn-soft-primary btn-sm d-none">
+                        <a href="{{ route('vendorWiseReport') }}" class="btn btn-soft-primary btn-sm">
                             View All
                         </a>
                     </div>
