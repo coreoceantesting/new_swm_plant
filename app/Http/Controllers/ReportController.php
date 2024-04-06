@@ -39,4 +39,38 @@ class ReportController extends Controller
         
         return view('reports.summaryReports', compact('results', 'request'));
     }
+
+    public function locationWiseReport(Request $request)
+    {   
+        $query = WeightMachine::query();
+        if (!empty($request->locationName)) {
+            $query->where('Field2', $request->locationName);
+        }
+
+        if (!empty($request->fromdate) && !empty($request->todate)) {
+            $query->whereBetween('created_at', [$request->fromdate, $request->todate]);
+        }
+
+        $results = $query->orderBy('id', 'desc')->get();
+
+        $locationLists = WeightMachine::whereNotNull('Field2')->distinct()->pluck('Field2');
+        return view('reports.locationWiseReport', compact('results', 'locationLists', 'request'));
+    }
+
+    public function vehicleTypeWiseReport(Request $request)
+    {
+        $query = WeightMachine::query();
+        if (!empty($request->vehicleType)) {
+            $query->where('Field1', $request->vehicleType);
+        }
+
+        if (!empty($request->fromdate) && !empty($request->todate)) {
+            $query->whereBetween('created_at', [$request->fromdate, $request->todate]);
+        }
+
+        $results = $query->orderBy('id', 'desc')->get();
+
+        $vehicleTypeLists = WeightMachine::whereNotNull('Field1')->distinct()->pluck('Field1');
+        return view('reports.vehicleTypeWiseReport', compact('results', 'vehicleTypeLists', 'request'));
+    }
 }

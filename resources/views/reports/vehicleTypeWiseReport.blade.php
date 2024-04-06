@@ -1,6 +1,6 @@
 <x-admin.layout>
-    <x-slot name="title">Vendor Wise Collection</x-slot>
-    <x-slot name="heading">Vendor Wise Collection</x-slot>
+    <x-slot name="title">Vehicle Type Wise Report</x-slot>
+    <x-slot name="heading">Vehicle Type Wise Report</x-slot>
     {{-- <x-slot name="subheading">Test</x-slot> --}}
 
         <div class="row">
@@ -11,11 +11,11 @@
                             @csrf
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <label class="col-form-label" for="vendorName">Vendor Name <span class="text-danger">*</span></label>
-                                    <select class="form-control" name="vendorName" id="vendorName">
-                                        <option value="">Select Vendor</option>
-                                        @foreach($vendorLists as $list)
-                                            <option value="{{ $list }}" {{ $list == $request->vendorName ? 'selected' : '' }}>{{ $list }}</option>
+                                    <label class="col-form-label" for="vehicleType">Vehicle Type <span class="text-danger">*</span></label>
+                                    <select class="form-control" name="vehicleType" id="vehicleType">
+                                        <option value="">Select Vehicle Type</option>
+                                        @foreach($vehicleTypeLists as $list)
+                                            <option value="{{ $list }}" {{ $list == $request->vehicleType ? 'selected' : '' }}>{{ $list }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <button type="submit" style="margin-top: 37px;" class="btn btn-primary" id="addSubmit">Submit</button>
-                                    <a style="margin-top: 37px;" href="{{route('vendorWiseReport')}}" class="btn btn-warning">Cancel</a>
+                                    <a style="margin-top: 37px;" href="{{route('vehicleTypeWiseReport')}}" class="btn btn-warning">Cancel</a>
                                 </div>
                             </div>
                         </form>

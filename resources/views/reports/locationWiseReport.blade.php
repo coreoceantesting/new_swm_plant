@@ -1,21 +1,21 @@
 <x-admin.layout>
-    <x-slot name="title">Vendor Wise Collection</x-slot>
-    <x-slot name="heading">Vendor Wise Collection</x-slot>
+    <x-slot name="title">Location Wise Report</x-slot>
+    <x-slot name="heading">Location Wise Report</x-slot>
     {{-- <x-slot name="subheading">Test</x-slot> --}}
 
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <form class="theme-form" name="addForm" id="addForm" enctype="multipart/form-data">
+                        <form class="theme-form" action="{{route('locationWiseReport')}}" method="GET" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <label class="col-form-label" for="vendorName">Vendor Name <span class="text-danger">*</span></label>
-                                    <select class="form-control" name="vendorName" id="vendorName">
-                                        <option value="">Select Vendor</option>
-                                        @foreach($vendorLists as $list)
-                                            <option value="{{ $list }}" {{ $list == $request->vendorName ? 'selected' : '' }}>{{ $list }}</option>
+                                    <label class="col-form-label" for="locationName">Locations <span class="text-danger">*</span></label>
+                                    <select class="form-control" name="locationName" id="locationName">
+                                        <option value="">Select Location</option>
+                                        @foreach($locationLists as $list)
+                                            <option value="{{ $list }}" {{ $list == $request->locationName ? 'selected' : '' }}>{{ $list }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <button type="submit" style="margin-top: 37px;" class="btn btn-primary" id="addSubmit">Submit</button>
-                                    <a style="margin-top: 37px;" href="{{route('vendorWiseReport')}}" class="btn btn-warning">Cancel</a>
+                                    <a style="margin-top: 37px;" href="{{route('locationWiseReport')}}" class="btn btn-warning">Cancel</a>
                                 </div>
                             </div>
                         </form>
@@ -41,6 +41,7 @@
                                     <tr>
                                         <th>SR.NO</th>
                                         <th>Vendor Name</th>
+                                        <th>Location Name</th>
                                         <th>Date & Time </th>
                                         <th>Vehicle No</th>
                                         <th>Gross Weight</th>
@@ -54,6 +55,7 @@
                                         <tr>
                                             <td>{{ $index + 1 }}</td>
                                             <td>{{ $result->Party_Name }}</td>
+                                            <td>{{ $result->Field2 }}</td>
                                             <td>{{ $result->EntryDate }}</td>
                                             <td>{{ $result->Vehicle_No }}</td>
                                             <td>{{ $result->GrossWt }}</td>

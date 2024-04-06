@@ -68,6 +68,12 @@
                                 <a href="{{ route('summaryReport') }}" class="nav-link" data-key="t-horizontal">Summary Report</a>
                             </li>
                             <li class="nav-item">
+                                <a href="{{ route('locationWiseReport') }}" class="nav-link" data-key="t-horizontal">Location Wise Report</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('vehicleTypeWiseReport') }}" class="nav-link" data-key="t-horizontal">Vehicle Type Wise Report</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="#" class="nav-link" data-key="t-horizontal">Vehicle Round Details</a>
                             </li>
                         </ul>
