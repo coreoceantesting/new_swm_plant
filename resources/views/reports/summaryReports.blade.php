@@ -41,9 +41,9 @@
                                     @foreach ($results as $result)
                                         <tr>
                                             <td>{{ $result->Party_Name }}</td>
-                                            <td>{{ $result->total_gross_weight }}</td>
-                                            <td>{{ $result->total_tare_weight }}</td>
-                                            <td>{{ $result->total_net_weight }}</td>
+                                            <td>{{ $result->total_gross_weight }}/KG</td>
+                                            <td>{{ $result->total_tare_weight }}/KG</td>
+                                            <td>{{ $result->total_net_weight }}/ KG</td>
                                             <td>{{ $result->total_vehicle_round }}</td>
                                         </tr>
                                     @endforeach

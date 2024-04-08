@@ -41,6 +41,7 @@
                                     <tr>
                                         <th>SR.NO</th>
                                         <th>Vendor Name</th>
+                                        <th>Vehicle Type</th>
                                         <th>Date & Time </th>
                                         <th>Vehicle No</th>
                                         <th>Gross Weight</th>
@@ -54,11 +55,12 @@
                                         <tr>
                                             <td>{{ $index + 1 }}</td>
                                             <td>{{ $result->Party_Name }}</td>
+                                            <td>{{ $result->Field1 }}</td>
                                             <td>{{ $result->EntryDate }}</td>
                                             <td>{{ $result->Vehicle_No }}</td>
-                                            <td>{{ $result->GrossWt }}</td>
-                                            <td>{{ $result->TareWt }}</td>
-                                            <td>{{ $result->NetWt }}</td>
+                                            <td>{{ $result->GrossWt }}/KG</td>
+                                            <td>{{ $result->TareWt }}/KG</td>
+                                            <td>{{ $result->NetWt }}/KG</td>
                                             <td>
                                                 <!-- Button trigger modal -->
                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $index }}">
