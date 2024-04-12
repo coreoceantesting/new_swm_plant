@@ -74,11 +74,12 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            @for ($i = 1; $i <= 8; $i++)
-                                                                @if ($result->{"Img$i"})
-                                                                    <img src="data:image/png;base64,{{ $result->{"Img$i"} }}" height="200" width="200" alt="Image {{ $i }}">
-                                                                @endif
-                                                            @endfor
+                                                            <?php for ($i = 1; $i <= 8; $i++): ?>
+                                                                <?php $imageData = $result->{"Img$i"}; ?>
+                                                                <?php if ($imageData): ?>
+                                                                    <img src="<?php echo 'data:image/png;base64,' . $imageData; ?>" height="200" width="200" alt="Image <?php echo $i; ?>">
+                                                                <?php endif; ?>
+                                                            <?php endfor; ?>
                                                         </div>
                                                         <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
