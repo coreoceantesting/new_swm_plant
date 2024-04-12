@@ -75,9 +75,12 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <?php for ($i = 1; $i <= 8; $i++): ?>
-                                                                <?php $imageData = $result->{"Img$i"}; ?>
-                                                                <?php if ($imageData): ?>
-                                                                    <img src="<?php echo 'data:image/png;base64,' . $imageData; ?>" height="200" width="200" alt="Image <?php echo $i; ?>">
+                                                                <?php $imageUrl = ''; // Initialize the variable to hold the image URL ?>
+                                                                <?php if ($result->{"Img$i"}): ?>
+                                                                    <?php $imageUrl = 'data:image/png;base64,' . $result->{"Img$i"}; ?>
+                                                                <?php endif; ?>
+                                                                <?php if ($imageUrl): ?>
+                                                                    <img src="<?php echo $imageUrl; ?>" height="200" width="200" alt="Image <?php echo $i; ?>">
                                                                 <?php endif; ?>
                                                             <?php endfor; ?>
                                                         </div>
