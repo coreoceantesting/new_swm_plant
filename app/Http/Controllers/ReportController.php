@@ -19,7 +19,7 @@ class ReportController extends Controller
             $query->whereBetween('created_at', [$request->fromdate, $request->todate]);
         }
 
-        $results = $query->orderBy('id', 'desc')->get();
+        $results = $query->select('Party_Name','EntryDate', 'Vehicle_No', 'GrossWt', 'TareWt','NetWt', 'Img1','Img2','Img3','Img4','Img5','Img6','Img7','Img8')->orderBy('id', 'desc')->get();
 
         $vendorLists = WeightMachine::distinct()->pluck('Party_Name');
         return view('reports.vendorWiseCollection', compact('vendorLists', 'results', 'request'));
