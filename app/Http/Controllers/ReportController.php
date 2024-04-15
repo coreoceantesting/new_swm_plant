@@ -81,7 +81,7 @@ class ReportController extends Controller
 
         for ($i = 1; $i <= 8; $i++) {
             if ($result->{"Img$i"}) {
-                $images .= '<img src="data:image/png;base64,' . $result->{"Img$i"} . '" height="200" width="200" alt="Image ' . $i . '">';
+                $images .= '<img style="padding:5px;" src="data:image/png;base64,' . $result->{"Img$i"} . '" height="200" width="200" alt="Image ' . $i . '">';
             }
         }
 
