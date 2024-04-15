@@ -97,13 +97,13 @@
 
 <script>
     $(document).ready(function () {
-        $('.open-modal').click(function () {
+        $('#buttons-datatables').on('click', '.open-modal', function () {
             var id = $(this).data('id');
             $.ajax({
                 url: '/getImages/' + id,
                 type: 'GET',
                 success: function (response) {
-                    $('#imageContainer'+ id).html(response);
+                    $('#imageContainer' + id).html(response);
                     $('#exampleModal' + id).modal('show'); // Adjusted modal ID here
                 },
                 error: function (xhr, status, error) {
