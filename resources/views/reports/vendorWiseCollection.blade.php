@@ -76,7 +76,7 @@
                                                         <div class="modal-body">
                                                             @for ($i = 1; $i <= 8; $i++)
                                                                 @if ($result->{"Img$i"})
-                                                                    <img src="data:image/png;base64,{{ $result->{"Img$i"} }}" height="200" width="200" alt="Image {{ $i }}">
+                                                                    <img src="{{ $result->{"Img$i"} }}" height="200" width="200" alt="Image {{ $i }}">
                                                                 @endif
                                                             @endfor
                                                         </div>
