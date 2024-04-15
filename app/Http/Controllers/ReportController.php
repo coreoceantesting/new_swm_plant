@@ -19,7 +19,7 @@ class ReportController extends Controller
             $query->whereBetween('created_at', [$request->fromdate, $request->todate]);
         }
 
-        $results = $query->select('Party_Name','EntryDate', 'Vehicle_No', 'GrossWt', 'TareWt','NetWt', 'Img1','Img2','Img3','Img4','Img5','Img6','Img7','Img8')->orderBy('id', 'desc')->get();
+        $results = $query->select('id','Party_Name','EntryDate', 'Vehicle_No', 'GrossWt', 'TareWt','NetWt', 'Img1','Img2','Img3','Img4','Img5','Img6','Img7','Img8')->orderBy('id', 'desc')->get();
 
         $vendorLists = WeightMachine::distinct()->pluck('Party_Name');
         return view('reports.vendorWiseCollection', compact('vendorLists', 'results', 'request'));
@@ -73,4 +73,19 @@ class ReportController extends Controller
         $vehicleTypeLists = WeightMachine::whereNotNull('Field1')->distinct()->pluck('Field1');
         return view('reports.vehicleTypeWiseReport', compact('results', 'vehicleTypeLists', 'request'));
     }
+
+    public function getImages($id)
+    {
+        $result = WeightMachine::findOrFail($id);
+        $images = '';
+
+        for ($i = 1; $i <= 8; $i++) {
+            if ($result->{"Img$i"}) {
+                $images .= '<img src="data:image/png;base64,' . $result->{"Img$i"} . '" height="200" width="200" alt="Image ' . $i . '">';
+            }
+        }
+
+        return $images;
+    }
+
 }
