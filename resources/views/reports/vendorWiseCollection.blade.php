@@ -46,7 +46,7 @@
                                         <th>Gross Weight</th>
                                         <th>Tare Weight</th>
                                         <th>Net Weight</th>
-                                        {{-- <th>Images</th> --}}
+                                        <th>Images</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -59,7 +59,7 @@
                                             <td>{{ $result->GrossWt }}/KG</td>
                                             <td>{{ $result->TareWt }}/KG</td>
                                             <td>{{ $result->NetWt }}/KG</td>
-                                            {{-- <td>
+                                            <td>
                                                 <!-- Button trigger modal -->
                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $index }}">
                                                     View
@@ -76,7 +76,7 @@
                                                         <div class="modal-body">
                                                             @for ($i = 1; $i <= 8; $i++)
                                                                 @if ($result->{"Img$i"})
-                                                                    <img src="{{ $result->{"Img$i"} }}" height="200" width="200" alt="Image {{ $i }}">
+                                                                    <img src="data:image/png;base64,{{ $result->{"Img$i"} }}" height="200" width="200" alt="Image {{ $i }}">
                                                                 @endif
                                                             @endfor
                                                         </div>
@@ -86,7 +86,7 @@
                                                     </div>
                                                     </div>
                                                 </div>
-                                            </td> --}}
+                                            </td>
                                         </tr>
                                         
                                     @endforeach
