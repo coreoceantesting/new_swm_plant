@@ -62,31 +62,26 @@
                                             <td>{{ $result->TareWt }}/KG</td>
                                             <td>{{ $result->NetWt }}/KG</td>
                                             <td>
-                                                <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $index }}">
-                                                    View
+                                                <button type="button" class="btn btn-primary open-modal" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $result->id }}" data-id="{{ $result->id }}">
+                                                  View
                                                 </button>
-                                                
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="exampleModal{{ $index }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ $index }}" aria-hidden="true">
-                                                    <div class="modal-dialog modal-xl">
+                                              
+                                                <div class="modal fade" id="exampleModal{{ $result->id }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ $result->id }}" aria-hidden="true">
+                                                  <div class="modal-dialog modal-xl" role="document">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel{{ $index }}">Images</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                      <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel{{ $result->id }}">Images</h5>
+                                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                                          <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                      </div>
+                                                      <div class="modal-body" id="imageContainer{{ $result->id }}">
                                                         </div>
-                                                        <div class="modal-body">
-                                                            @for ($i = 1; $i <= 8; $i++)
-                                                                @if ($result->{"Img$i"})
-                                                                    <img src="data:image/png;base64,{{ $result->{"Img$i"} }}" height="200" width="200" alt="Image {{ $i }}">
-                                                                @endif
-                                                            @endfor
-                                                        </div>
-                                                        <div class="modal-footer">
+                                                      <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        </div>
+                                                      </div>
                                                     </div>
-                                                    </div>
+                                                  </div>
                                                 </div>
                                             </td>
                                         </tr>
@@ -101,3 +96,22 @@
 
 
 </x-admin.layout>
+
+<script>
+    $(document).ready(function () {
+        $('.open-modal').click(function () {
+            var id = $(this).data('id');
+            $.ajax({
+                url: '/getImages/' + id,
+                type: 'GET',
+                success: function (response) {
+                    $('#imageContainer'+ id).html(response);
+                    $('#exampleModal' + id).modal('show'); // Adjusted modal ID here
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
+</script>
