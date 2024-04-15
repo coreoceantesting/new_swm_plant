@@ -68,22 +68,22 @@
                                                 <!-- Modal -->
                                                 <div class="modal fade" id="exampleModal{{ $index }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ $index }}" aria-hidden="true">
                                                     <div class="modal-dialog modal-xl">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel{{ $index }}">Images</h5>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                @for ($i = 1; $i <= 8; $i++)
-                                                                    @if ($result->{"Img$i"})
-                                                                        <img class="lazyload" data-src="data:image/png;base64,{{ $result->{"Img$i"} }}" height="200" width="200" alt="Image {{ $i }}">
-                                                                    @endif
-                                                                @endfor
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                            </div>
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel{{ $index }}">Images</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
+                                                        <div class="modal-body">
+                                                            @for ($i = 1; $i <= 8; $i++)
+                                                                @if ($result->{"Img$i"})
+                                                                    <img src="data:image/png;base64,{{ $result->{"Img$i"} }}" height="200" width="200" alt="Image {{ $i }}">
+                                                                @endif
+                                                            @endfor
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
                                                     </div>
                                                 </div>
                                             </td>
@@ -99,11 +99,3 @@
 
 
 </x-admin.layout>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async=""></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Initialize lazy loading
-        lazySizes.init();
-    });
-</script>
