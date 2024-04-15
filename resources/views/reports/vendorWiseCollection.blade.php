@@ -68,22 +68,18 @@
                                                 <!-- Modal -->
                                                 <div class="modal fade" id="exampleModal{{ $index }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ $index }}" aria-hidden="true">
                                                     <div class="modal-dialog modal-xl">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel{{ $index }}">Images</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel{{ $index }}">Images</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body" id="imageContainer{{ $index }}">
+                                                                <!-- Images will be loaded here dynamically -->
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            </div>
                                                         </div>
-                                                        <div class="modal-body">
-                                                            @for ($i = 1; $i <= 8; $i++)
-                                                                @if ($result->{"Img$i"})
-                                                                    <img src="data:image/png;base64,{{ $result->{"Img$i"} }}" height="200" width="200" alt="Image {{ $i }}">
-                                                                @endif
-                                                            @endfor
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        </div>
-                                                    </div>
                                                     </div>
                                                 </div>
                                             </td>
@@ -99,3 +95,28 @@
 
 
 </x-admin.layout>
+
+<script>
+    $(document).ready(function() {
+        // Function to load images asynchronously
+        function loadImages(index, result) {
+            var imageContainer = $('#imageContainer' + index);
+            for (var i = 1; i <= 8; i++) {
+                if (result['Img' + i]) {
+                    var img = $('<img>').attr({
+                        src: 'data:image/png;base64,' + result['Img' + i],
+                        height: 200,
+                        width: 200,
+                        alt: 'Image ' + i
+                    });
+                    imageContainer.append(img);
+                }
+            }
+        }
+
+        // Load images for each modal dynamically
+        @foreach ($results as $index => $result)
+        loadImages({{ $index }}, {!! json_encode($result) !!});
+        @endforeach
+    });
+</script>
