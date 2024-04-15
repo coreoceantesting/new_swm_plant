@@ -74,31 +74,11 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            @php
-                                                            $perPage = 4; // Number of images per page
-                                                            $totalImages = 8; // Total number of images
-                                                            $totalPages = ceil($totalImages / $perPage); // Calculate total pages
-                                                            $currentPage = isset($_GET['page']) ? max(1, min($_GET['page'], $totalPages)) : 1; // Get current page from query parameter
-                                                            $start = ($currentPage - 1) * $perPage; // Calculate starting index
-                                                            $end = min($start + $perPage, $totalImages); // Calculate ending index
-                                                            @endphp
-                                                            
-                                                            @for ($i = $start + 1; $i <= $end; $i++)
+                                                            @for ($i = 1; $i <= 8; $i++)
                                                                 @if ($result->{"Img$i"})
                                                                     <img src="data:image/png;base64,{{ $result->{"Img$i"} }}" height="200" width="200" alt="Image {{ $i }}">
                                                                 @endif
                                                             @endfor
-                                                        
-                                                            <!-- Pagination links -->
-                                                            <nav aria-label="Page navigation">
-                                                                <ul class="pagination">
-                                                                    @for ($page = 1; $page <= $totalPages; $page++)
-                                                                        <li class="page-item {{ $page == $currentPage ? 'active' : '' }}">
-                                                                            <a class="page-link" href="?page={{ $page }}">{{ $page }}</a>
-                                                                        </li>
-                                                                    @endfor
-                                                                </ul>
-                                                            </nav>
                                                         </div>
                                                         <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
