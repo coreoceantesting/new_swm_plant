@@ -74,6 +74,9 @@ Route::middleware(['auth','PreventBackHistory'])->group(function()
     Route::get('/monthly-collection', [App\Http\Controllers\Admin\DashboardController::class, 'getMonthlyCollectionData'])->name('montly.collection');
     Route::get('/daily-collection', [App\Http\Controllers\Admin\DashboardController::class, 'getDailyCollectionData'])->name('daily.collection');
 
+    // load image 
+
+    Route::get('loadImages', [App\Http\Controllers\ReportController::class, 'loadImages' ])->name('loadImages');
 
 
 });

@@ -68,22 +68,25 @@
                                                 <!-- Modal -->
                                                 <div class="modal fade" id="exampleModal{{ $index }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ $index }}" aria-hidden="true">
                                                     <div class="modal-dialog modal-xl">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel{{ $index }}">Images</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel{{ $index }}">Images</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div id="imageContainer{{ $index }}">
+                                                                    <!-- Images will be loaded here via AJAX -->
+                                                                </div>
+                                                                <nav aria-label="Page navigation">
+                                                                    <ul class="pagination" id="pagination{{ $index }}">
+                                                                        <!-- Pagination links will be loaded here via AJAX -->
+                                                                    </ul>
+                                                                </nav>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            </div>
                                                         </div>
-                                                        <div class="modal-body">
-                                                            @for ($i = 1; $i <= 8; $i++)
-                                                                @if ($result->{"Img$i"})
-                                                                    <img src="data:image/png;base64,{{ $result->{"Img$i"} }}" height="200" width="200" alt="Image {{ $i }}">
-                                                                @endif
-                                                            @endfor
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        </div>
-                                                    </div>
                                                     </div>
                                                 </div>
                                             </td>
@@ -99,3 +102,33 @@
 
 
 </x-admin.layout>
+
+<script>
+    // Function to load images for a specific page
+    function loadImages(page, index) {
+        $.ajax({
+            url: '{{ route('loadImages') }}',
+            type: 'GET',
+            data: { page: page },
+            success: function(response) {
+                $('#imageContainer{{ $index }}').html(response.images);
+                $('#pagination{{ $index }}').html(response.pagination);
+            },
+            error: function(xhr, status, error) {
+                console.error('Error loading images:', error);
+            }
+        });
+    }
+
+    // Event listener for modal shown
+    $('#exampleModal{{ $index }}').on('shown.bs.modal', function (e) {
+        loadImages(1, {{ $index }});
+    });
+
+    // Event listener for pagination click
+    $(document).on('click', '#pagination{{ $index }} .page-link', function (e) {
+        e.preventDefault();
+        var page = $(this).attr('href').split('page=')[1];
+        loadImages(page, {{ $index }});
+    });
+</script>
