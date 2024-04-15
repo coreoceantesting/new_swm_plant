@@ -73,30 +73,4 @@ class ReportController extends Controller
         $vehicleTypeLists = WeightMachine::whereNotNull('Field1')->distinct()->pluck('Field1');
         return view('reports.vehicleTypeWiseReport', compact('results', 'vehicleTypeLists', 'request'));
     }
-
-    public function loadImages(Request $request)
-    {
-        $perPage = 4; // Number of images per page
-        $totalImages = 8; // Total number of images
-        $totalPages = ceil($totalImages / $perPage); // Calculate total pages
-        $currentPage = $request->page ?? 1; // Get current page from request parameter
-        $start = ($currentPage - 1) * $perPage; // Calculate starting index
-        $end = min($start + $perPage, $totalImages); // Calculate ending index
-        
-        $images = '';
-        for ($i = $start + 1; $i <= $end; $i++) {
-            if ($result->{"Img$i"}) {
-                $images .= '<img src="data:image/png;base64,'. $result->{"Img$i"} .'" height="200" width="200" alt="Image '. $i .'">';
-            }
-        }
-
-        $pagination = '';
-        for ($page = 1; $page <= $totalPages; $page++) {
-            $pagination .= '<li class="page-item '. ($page == $currentPage ? 'active' : '') .'">';
-            $pagination .= '<a class="page-link" href="?page='. $page .'">'. $page .'</a>';
-            $pagination .= '</li>';
-        }
-
-        return response()->json(['images' => $images, 'pagination' => $pagination]);
-    }
 }
