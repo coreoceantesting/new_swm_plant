@@ -29,7 +29,7 @@
                                             <b>Todays's Net Collection</b>
                                         </a>
                                         <h2 class="mt-4 ff-secondary fw-semibold">
-                                            <span class="counter-value text-primary" data-target="{{ $todayNetCollectionSum }}">{{ $todayNetCollectionSum}}</span> <span class="text-primary">KG</span>
+                                            <span class="counter-value text-primary" data-target="{{ $todayNetCollectionSum / 1000 }}">{{ $todayNetCollectionSum  / 1000}}</span> <span class="text-primary">TONS</span>
                                         </h2>
                                         <p class="mb-0 text-muted" style="display: none">
                                             <span class="badge bg-light text-success mb-0"><i class="ri-arrow-up-line align-middle"></i>
@@ -62,7 +62,7 @@
                                             <b>Monthly Net Collection</b>
                                         </a>
                                         <h2 class="mt-4 ff-secondary fw-semibold">
-                                            <span class="counter-value text-primary" data-target="{{ $monthlyNetCollectionSum }}">{{ $monthlyNetCollectionSum }}</span> <span class="text-primary">KG</span>
+                                            <span class="counter-value text-primary" data-target="{{ $monthlyNetCollectionSum / 1000 }}">{{ $monthlyNetCollectionSum / 1000}}</span> <span class="text-primary">TONS</span>
                                         </h2>
                                         <p class="mb-0 text-muted" style="display: none">
                                             <span class="badge bg-light text-success mb-0"><i class="ri-arrow-up-line align-middle"></i>
@@ -95,7 +95,7 @@
                                            <b> Yearly Net Collection</b>
                                         </a>
                                         <h2 class="mt-4 ff-secondary fw-semibold">
-                                            <span class="counter-value text-primary" data-target="{{ $yearlyNetCollectionSum }}">{{ $yearlyNetCollectionSum }}</span> <span class="text-primary">KG</span>
+                                            <span class="counter-value text-primary" data-target="{{ $yearlyNetCollectionSum / 1000}}">{{ $yearlyNetCollectionSum / 1000}}</span> <span class="text-primary">TONS</span>
                                         </h2>
                                         <p class="mb-0 text-muted" style="display: none">
                                             <span class="badge bg-light text-danger mb-0">
@@ -248,9 +248,9 @@
                                 </thead>
                                 <tbody>
                                         <tr>
-                                            <td>{{ $todayCollectionDetails->gross_weight ?? 0 }} KG</td>
-                                            <td>{{ $todayCollectionDetails->tare_weight ?? 0 }} KG</td>
-                                            <td>{{ $todayCollectionDetails->net_weight ?? 0 }} KG</td>
+                                            <td>{{ $todayCollectionDetails->gross_weight ? number_format($todayCollectionDetails->gross_weight / 1000, 2) : 0 }} TONS</td>
+                                            <td>{{ $todayCollectionDetails->tare_weight ? number_format($todayCollectionDetails->tare_weight / 1000, 2) : 0 }} TONS</td>
+                                            <td>{{ $todayCollectionDetails->net_weight ? number_format($todayCollectionDetails->net_weight / 1000, 2) : 0 }} TONS</td>
                                         </tr>
                                 </tbody>
                             </table>
@@ -279,7 +279,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <p class="card-text"><strong>Vehicle No: </strong> {{$list->Vehicle_No}}</p>
-                                <p class="card-text"><strong>Net Collection: </strong> {{$list->NetWt}} KG</p>
+                                <p class="card-text"><strong>Net Collection: </strong> {{$list->NetWt / 1000}} TONS</p>
                                 <p class="card-text"><strong>Date & Time: </strong> {{$list->Net_Date}}</p>
                             </div>
                         </div>
@@ -356,10 +356,10 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>{{round($todayCollectionDetailsVendorOne->gross_weight) ?? 0}} KG</td>
-                                                <td>{{round($todayCollectionDetailsVendorOne->tare_weight) ?? 0}} KG</td>
-                                                <td>{{round($todayCollectionDetailsVendorOne->net_weight) ?? 0}} KG</td>
-                                                <td>{{$todayCollectionDetailsVendorOne->todays_round}} KG</td>
+                                                <td>{{ $todayCollectionDetailsVendorOne->gross_weight ? round($todayCollectionDetailsVendorOne->gross_weight / 1000, 2) : 0 }} Tons</td>
+                                                <td>{{ $todayCollectionDetailsVendorOne->tare_weight ? round($todayCollectionDetailsVendorOne->tare_weight / 1000, 2) : 0 }} Tons</td>
+                                                <td>{{ $todayCollectionDetailsVendorOne->net_weight ? round($todayCollectionDetailsVendorOne->net_weight / 1000, 2) : 0 }} Tons</td>
+                                                <td>{{$todayCollectionDetailsVendorOne->todays_round}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -386,10 +386,10 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>{{round($currentMonthCollectionDetailsVendorOne->gross_weight) ?? 0}} KG</td>
-                                                <td>{{round($currentMonthCollectionDetailsVendorOne->tare_weight) ?? 0}} KG</td>
-                                                <td>{{round($currentMonthCollectionDetailsVendorOne->net_weight) ?? 0}} KG</td>
-                                                <td>{{$currentMonthCollectionDetailsVendorOne->current_month_rounds}} KG</td>
+                                                <td>{{ $currentMonthCollectionDetailsVendorOne->gross_weight ? round($currentMonthCollectionDetailsVendorOne->gross_weight / 1000, 2) : 0 }} Tons</td>
+                                                <td>{{ $currentMonthCollectionDetailsVendorOne->tare_weight ? round($currentMonthCollectionDetailsVendorOne->tare_weight / 1000, 2) : 0 }} Tons</td>
+                                                <td>{{ $currentMonthCollectionDetailsVendorOne->net_weight ? round($currentMonthCollectionDetailsVendorOne->net_weight / 1000, 2) : 0 }} Tons</td>
+                                                <td>{{$currentMonthCollectionDetailsVendorOne->current_month_rounds}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -416,10 +416,10 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>{{round($previousMonthCollectionDetailsVendorOne->gross_weight) ?? 0}} KG</td>
-                                                <td>{{round($previousMonthCollectionDetailsVendorOne->tare_weight) ?? 0}} KG</td>
-                                                <td>{{round($previousMonthCollectionDetailsVendorOne->net_weight) ?? 0}} KG</td>
-                                                <td>{{$previousMonthCollectionDetailsVendorOne->rounds}} KG</td>
+                                                <td>{{ $previousMonthCollectionDetailsVendorOne->gross_weight ? round($previousMonthCollectionDetailsVendorOne->gross_weight / 1000, 2) : 0 }} Tons</td>
+                                                <td>{{ $previousMonthCollectionDetailsVendorOne->tare_weight ? round($previousMonthCollectionDetailsVendorOne->tare_weight / 1000, 2) : 0 }} Tons</td>
+                                                <td>{{ $previousMonthCollectionDetailsVendorOne->net_weight ? round($previousMonthCollectionDetailsVendorOne->net_weight / 1000, 2) : 0 }} Tons</td>
+                                                <td>{{$previousMonthCollectionDetailsVendorOne->rounds}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -446,10 +446,10 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>{{round($currentYearCollectionDetailsVendorOne->gross_weight) ?? 0}} KG</td>
-                                                <td>{{round($currentYearCollectionDetailsVendorOne->tare_weight) ?? 0}} KG</td>
-                                                <td>{{round($currentYearCollectionDetailsVendorOne->net_weight) ?? 0}} KG</td>
-                                                <td>{{$currentYearCollectionDetailsVendorOne->current_year_rounds}} KG</td>
+                                                <td>{{ $currentYearCollectionDetailsVendorOne->gross_weight ? round($currentYearCollectionDetailsVendorOne->gross_weight / 1000, 2) : 0 }} Tons</td>
+                                                <td>{{ $currentYearCollectionDetailsVendorOne->tare_weight ? round($currentYearCollectionDetailsVendorOne->tare_weight / 1000, 2) : 0 }} Tons</td>
+                                                <td>{{ $currentYearCollectionDetailsVendorOne->net_weight ? round($currentYearCollectionDetailsVendorOne->net_weight / 1000, 2) : 0 }} Tons</td>
+                                                <td>{{$currentYearCollectionDetailsVendorOne->current_year_rounds}}</td>
                                             </tr>
                                         </tbody>
                                     </table>

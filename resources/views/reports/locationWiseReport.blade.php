@@ -58,9 +58,9 @@
                                             <td>{{ $result->Field2 }}</td>
                                             <td>{{ $result->EntryDate }}</td>
                                             <td>{{ $result->Vehicle_No }}</td>
-                                            <td>{{ $result->GrossWt }}/KG</td>
-                                            <td>{{ $result->TareWt }}/KG</td>
-                                            <td>{{ $result->NetWt }}/KG</td>
+                                            <td>{{ $result->GrossWt / 1000}} / Tons</td>
+                                            <td>{{ $result->TareWt / 1000}} / Tons</td>
+                                            <td>{{ $result->NetWt / 1000}} / Tons</td>
                                             <td>
                                                 <button type="button" class="btn btn-primary open-modal" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $result->id }}" data-id="{{ $result->id }}">
                                                   View
