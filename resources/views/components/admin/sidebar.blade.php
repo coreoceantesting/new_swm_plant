@@ -40,7 +40,7 @@
                 </li>
 
 
-                <li class="nav-item">
+                <li class="nav-item d-none">
                     <a class="nav-link menu-link" href="#sidebarLayouts" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
                         <i class="ri-layout-3-line"></i>
                         <span data-key="t-layouts">Masters</span>
