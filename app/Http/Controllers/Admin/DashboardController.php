@@ -27,18 +27,18 @@ class DashboardController extends Controller
 
             $todayCollectionDetailsVendorOne = WeightMachine::selectRaw('SUM(NetWt) as net_weight, SUM(GrossWt) as gross_weight, SUM(TareWt) as tare_weight, COUNT(tripID) as todays_round')
             ->whereDate('created_at', $today)
-            ->where('Party_Name', 'AMOL TRANSPORT')
+            ->where('Party_Name', 'kristel enterprises')
             ->first();
 
             $currentMonthCollectionDetailsVendorOne = WeightMachine::selectRaw('SUM(NetWt) as net_weight, SUM(GrossWt) as gross_weight, SUM(TareWt) as tare_weight, COUNT(tripID) as current_month_rounds')
             ->whereMonth('created_at', $today->month)
             ->whereYear('created_at', $today->year)
-            ->where('Party_Name', 'AMOL TRANSPORT')
+            ->where('Party_Name', 'kristel enterprises')
             ->first();
 
             $currentYearCollectionDetailsVendorOne = WeightMachine::selectRaw('SUM(NetWt) as net_weight, SUM(GrossWt) as gross_weight, SUM(TareWt) as tare_weight, COUNT(tripID) as current_year_rounds')
             ->whereYear('created_at', $today->year)
-            ->where('Party_Name', 'AMOL TRANSPORT')
+            ->where('Party_Name', 'kristel enterprises')
             ->first();
 
             // Get the first day of the previous month
@@ -50,7 +50,7 @@ class DashboardController extends Controller
             // Retrieve collection details for the previous month for a specific vendor
             $previousMonthCollectionDetailsVendorOne = WeightMachine::selectRaw('SUM(NetWt) as net_weight, SUM(GrossWt) as gross_weight, SUM(TareWt) as tare_weight, COUNT(tripID) as rounds')
                 ->whereBetween('created_at', [$firstDayOfPreviousMonth, $lastDayOfPreviousMonth])
-                ->where('Party_Name', 'AMOL TRANSPORT')
+                ->where('Party_Name', 'kristel enterprises')
                 ->first();
 
         // vendorwise Data Section End 

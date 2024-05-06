@@ -332,7 +332,7 @@
             <div class="card border-primary card-height-100">
                 <div class="card-header bg-primary align-items-center d-flex">
                     <h4 class="card-title text-center text-white mb-0 flex-grow-1">
-                        Amol Transport Collection Details
+                        Kristel Enterprises Collection Details
                     </h4>
                 </div>
                 <div class="card-body">
