@@ -329,136 +329,50 @@
         </div><!--end col-->
 
         <div class="col-xl-12">
-            <div class="card border-primary card-height-100">
-                <div class="card-header bg-primary align-items-center d-flex">
-                    <h4 class="card-title text-center text-white mb-0 flex-grow-1">
-                        Kristel Enterprises Collection Details
-                    </h4>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-3" style="padding-left:0px;padding-right:0px;">
-                            <div class="card">
-                                <div class="card-header bg-primary align-items-center d-flex">
-                                    <h4 class="card-title text-white mb-0 flex-grow-1 text-center">
-                                        Todays
-                                    </h4>
+            @foreach($vendors as $vendor)
+                <div class="card border-primary card-height-10">
+                    <div class="card-header bg-primary align-items-center d-flex">
+                        <h4 class="card-title text-center text-white mb-0 flex-grow-1">
+                            {{ $vendor->Party_Name }} Collection Details
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            @foreach($collectionDetails[$vendor->Party_Name] as $period => $details)
+                                <div class="col-md-3" style="padding-left:0px;padding-right:0px;">
+                                    <div class="card">
+                                        <div class="card-header bg-primary align-items-center d-flex">
+                                            <h4 class="card-title text-white mb-0 flex-grow-1 text-center">
+                                                {{ $period }}
+                                            </h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <table class="table" style="width: 100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Gross</th>
+                                                        <th>Tare</th>
+                                                        <th>Net</th>
+                                                        <th>Round</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>{{ $details->gross_weight ? round($details->gross_weight / 1000, 2) : 0 }} Tons</td>
+                                                        <td>{{ $details->tare_weight ? round($details->tare_weight / 1000, 2) : 0 }} Tons</td>
+                                                        <td>{{ $details->net_weight ? round($details->net_weight / 1000, 2) : 0 }} Tons</td>
+                                                        <td>{{$details->todays_round}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="card-body">
-                                    <table class="table" style="width: 100%">
-                                        <thead>
-                                            <tr>
-                                                <th>Gross</th>
-                                                <th>Tare</th>
-                                                <th>Net</th>
-                                                <th>Round</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>{{ $todayCollectionDetailsVendorOne->gross_weight ? round($todayCollectionDetailsVendorOne->gross_weight / 1000, 2) : 0 }} Tons</td>
-                                                <td>{{ $todayCollectionDetailsVendorOne->tare_weight ? round($todayCollectionDetailsVendorOne->tare_weight / 1000, 2) : 0 }} Tons</td>
-                                                <td>{{ $todayCollectionDetailsVendorOne->net_weight ? round($todayCollectionDetailsVendorOne->net_weight / 1000, 2) : 0 }} Tons</td>
-                                                <td>{{$todayCollectionDetailsVendorOne->todays_round}}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3" style="padding-left:0px;padding-right:0px;">
-                            <div class="card">
-                                <div class="card-header bg-primary align-items-center d-flex">
-                                    <h4 class="card-title text-center text-white mb-0 flex-grow-1">
-                                        Current Month
-                                    </h4>
-                                </div>
-                                <div class="card-body">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>Gross</th>
-                                                <th>Tare</th>
-                                                <th>Net</th>
-                                                <th>Round</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>{{ $currentMonthCollectionDetailsVendorOne->gross_weight ? round($currentMonthCollectionDetailsVendorOne->gross_weight / 1000, 2) : 0 }} Tons</td>
-                                                <td>{{ $currentMonthCollectionDetailsVendorOne->tare_weight ? round($currentMonthCollectionDetailsVendorOne->tare_weight / 1000, 2) : 0 }} Tons</td>
-                                                <td>{{ $currentMonthCollectionDetailsVendorOne->net_weight ? round($currentMonthCollectionDetailsVendorOne->net_weight / 1000, 2) : 0 }} Tons</td>
-                                                <td>{{$currentMonthCollectionDetailsVendorOne->current_month_rounds}}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3" style="padding-left:0px;padding-right:0px;">
-                            <div class="card">
-                                <div class="card-header bg-primary align-items-center d-flex">
-                                    <h4 class="card-title text-center text-white mb-0 flex-grow-1">
-                                        Previous Month
-                                    </h4>
-                                </div>
-                                <div class="card-body">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>Gross</th>
-                                                <th>Tare</th>
-                                                <th>Net</th>
-                                                <th>Round</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>{{ $previousMonthCollectionDetailsVendorOne->gross_weight ? round($previousMonthCollectionDetailsVendorOne->gross_weight / 1000, 2) : 0 }} Tons</td>
-                                                <td>{{ $previousMonthCollectionDetailsVendorOne->tare_weight ? round($previousMonthCollectionDetailsVendorOne->tare_weight / 1000, 2) : 0 }} Tons</td>
-                                                <td>{{ $previousMonthCollectionDetailsVendorOne->net_weight ? round($previousMonthCollectionDetailsVendorOne->net_weight / 1000, 2) : 0 }} Tons</td>
-                                                <td>{{$previousMonthCollectionDetailsVendorOne->rounds}}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3" style="padding-left:0px;padding-right:0px;">
-                            <div class="card">
-                                <div class="card-header bg-primary align-items-center d-flex">
-                                    <h4 class="card-title text-center text-white mb-0 flex-grow-1">
-                                        Current Year
-                                    </h4>
-                                </div>
-                                <div class="card-body">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>Gross</th>
-                                                <th>Tare</th>
-                                                <th>Net</th>
-                                                <th>Round</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>{{ $currentYearCollectionDetailsVendorOne->gross_weight ? round($currentYearCollectionDetailsVendorOne->gross_weight / 1000, 2) : 0 }} Tons</td>
-                                                <td>{{ $currentYearCollectionDetailsVendorOne->tare_weight ? round($currentYearCollectionDetailsVendorOne->tare_weight / 1000, 2) : 0 }} Tons</td>
-                                                <td>{{ $currentYearCollectionDetailsVendorOne->net_weight ? round($currentYearCollectionDetailsVendorOne->net_weight / 1000, 2) : 0 }} Tons</td>
-                                                <td>{{$currentYearCollectionDetailsVendorOne->current_year_rounds}}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
-            </div>
+            @endforeach
         </div>
 
         <div class="col-xl-6">
