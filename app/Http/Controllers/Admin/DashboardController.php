@@ -29,7 +29,8 @@ class DashboardController extends Controller
 
         foreach ($vendors as $vendor) {
             $collectionDetails[$vendor->Party_Name]['Today'] = WeightMachine::selectRaw('SUM(NetWt) as net_weight, SUM(GrossWt) as gross_weight, SUM(TareWt) as tare_weight, COUNT(Party_Name) as todays_round')
-                ->whereDate('EntryDate', $today)
+                ->whereDate('EntryDate', '>=', $today->startOfDay()) // Start of today
+                ->whereDate('EntryDate', '<', $today->endOfDay())
                 ->where('Party_Name', $vendor->Party_Name)
                 ->first();
 
