@@ -17,9 +17,9 @@ class ReportController extends Controller
 
         if (!empty($request->fromdate) && !empty($request->todate)) {
             $query->where(function($q) use ($request) {
-                $q->whereBetween('created_at', [$request->fromdate, $request->todate])
-                  ->orWhereDate('created_at', $request->fromdate)
-                  ->orWhereDate('created_at', $request->todate);
+                $q->whereBetween('EntryDate', [$request->fromdate, $request->todate])
+                  ->orWhereDate('EntryDate', $request->fromdate)
+                  ->orWhereDate('EntryDate', $request->todate);
             });
         }
 
@@ -35,13 +35,13 @@ class ReportController extends Controller
 
         if (!empty($request->fromdate) && !empty($request->todate)) {
             $query->where(function($q) use ($request) {
-                $q->whereBetween('created_at', [$request->fromdate, $request->todate])
-                  ->orWhereDate('created_at', $request->fromdate)
-                  ->orWhereDate('created_at', $request->todate);
+                $q->whereBetween('EntryDate', [$request->fromdate, $request->todate])
+                  ->orWhereDate('EntryDate', $request->fromdate)
+                  ->orWhereDate('EntryDate', $request->todate);
             });
         }
 
-        $results = $query->selectRaw('Party_Name, SUM(GrossWt) as total_gross_weight, SUM(TareWt) as total_tare_weight, SUM(NetWt) as total_net_weight, COUNT(tripID) as total_vehicle_round')
+        $results = $query->selectRaw('Party_Name, SUM(GrossWt) as total_gross_weight, SUM(TareWt) as total_tare_weight, SUM(NetWt) as total_net_weight, COUNT(Party_Name) as total_vehicle_round')
                         ->groupBy('Party_Name')
                         ->get();
         
@@ -57,9 +57,9 @@ class ReportController extends Controller
 
         if (!empty($request->fromdate) && !empty($request->todate)) {
             $query->where(function($q) use ($request) {
-                $q->whereBetween('created_at', [$request->fromdate, $request->todate])
-                  ->orWhereDate('created_at', $request->fromdate)
-                  ->orWhereDate('created_at', $request->todate);
+                $q->whereBetween('EntryDate', [$request->fromdate, $request->todate])
+                  ->orWhereDate('EntryDate', $request->fromdate)
+                  ->orWhereDate('EntryDate', $request->todate);
             });
         }
 
@@ -78,9 +78,9 @@ class ReportController extends Controller
 
         if (!empty($request->fromdate) && !empty($request->todate)) {
             $query->where(function($q) use ($request) {
-                $q->whereBetween('created_at', [$request->fromdate, $request->todate])
-                  ->orWhereDate('created_at', $request->fromdate)
-                  ->orWhereDate('created_at', $request->todate);
+                $q->whereBetween('EntryDate', [$request->fromdate, $request->todate])
+                  ->orWhereDate('EntryDate', $request->fromdate)
+                  ->orWhereDate('EntryDate', $request->todate);
             });
         }
 
