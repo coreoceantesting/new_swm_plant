@@ -6,19 +6,19 @@
                 <div class="navbar-brand-box horizontal-logo">
                     <a href="{{ route('dashboard') }}" class="logo logo-dark">
                         <span class="logo-sm">
-                            <img src="{{ asset('admin/images/headerlogo.png') }}" alt="" height="50" />
+                            <img src="{{ asset('admin/images/headerlogo.png') }}" alt="" height="62" />
                         </span>
                         <span class="logo-lg">
-                            <img src="{{ asset('admin/images/headerlogo.png') }}" alt="" height="40" />
+                            <img src="{{ asset('admin/images/headerlogo.png') }}" alt="" height="52" />
                         </span>
                     </a>
 
                     <a href="{{ route('dashboard') }}" class="logo logo-light">
                         <span class="logo-sm">
-                            <img src="{{ asset('admin/images/headerlogo.png') }}" alt="" height="50" />
+                            <img src="{{ asset('admin/images/headerlogo.png') }}" alt="" height="62" />
                         </span>
                         <span class="logo-lg">
-                            <img src="{{ asset('admin/images/headerlogo.png') }}" alt="" height="40" />
+                            <img src="{{ asset('admin/images/headerlogo.png') }}" alt="" height="52" />
                         </span>
                     </a>
                 </div>
@@ -134,7 +134,7 @@
                 </form>
 
             </div>
-            <h1 class="text-white text-center">FY-23-24</h1>
+            {{-- <h1 class="text-white text-center">FY-23-24</h1> --}}
 
             <div class="d-flex align-items-center">
                 <div class="dropdown d-md-none topbar-head-dropdown header-item">

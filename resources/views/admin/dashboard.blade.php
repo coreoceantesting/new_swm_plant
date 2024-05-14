@@ -29,7 +29,7 @@
                                             <b>Todays's Net Collection</b>
                                         </a>
                                         <h2 class="mt-4 ff-secondary fw-semibold">
-                                            <span class="counter-value text-primary" data-target="{{ $todayNetCollectionSum / 1000 }}">{{ $todayNetCollectionSum  / 1000}}</span> <span class="text-primary">TONS</span>
+                                            <span class="counter-value text-primary" data-target="{{ $todayNetCollectionSum / 1000 }}">{{ $todayNetCollectionSum  / 1000}}</span> <small class="text-primary">Tons</small>
                                         </h2>
                                         <p class="mb-0 text-muted" style="display: none">
                                             <span class="badge bg-light text-success mb-0"><i class="ri-arrow-up-line align-middle"></i>
@@ -62,7 +62,7 @@
                                             <b>Monthly Net Collection</b>
                                         </a>
                                         <h2 class="mt-4 ff-secondary fw-semibold">
-                                            <span class="counter-value text-primary" data-target="{{ $monthlyNetCollectionSum / 1000 }}">{{ $monthlyNetCollectionSum / 1000}}</span> <span class="text-primary">TONS</span>
+                                            <span class="counter-value text-primary" data-target="{{ $monthlyNetCollectionSum / 1000 }}">{{ $monthlyNetCollectionSum / 1000}}</span> <small class="text-primary">Tons</small>
                                         </h2>
                                         <p class="mb-0 text-muted" style="display: none">
                                             <span class="badge bg-light text-success mb-0"><i class="ri-arrow-up-line align-middle"></i>
@@ -95,7 +95,7 @@
                                            <b> Yearly Net Collection</b>
                                         </a>
                                         <h2 class="mt-4 ff-secondary fw-semibold">
-                                            <span class="counter-value text-primary" data-target="{{ $yearlyNetCollectionSum / 1000}}">{{ $yearlyNetCollectionSum / 1000}}</span> <span class="text-primary">TONS</span>
+                                            <span class="counter-value text-primary" data-target="{{ $yearlyNetCollectionSum / 1000}}">{{ $yearlyNetCollectionSum / 1000}}</span> <small class="text-primary">Tons</small>
                                         </h2>
                                         <p class="mb-0 text-muted" style="display: none">
                                             <span class="badge bg-light text-danger mb-0">
@@ -244,13 +244,15 @@
                                         <th>Gross Weight</th>
                                         <th>Tare Weight</th>
                                         <th>Net Weight</th>
+                                        <th>Vehicle Rounds</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                         <tr>
-                                            <td>{{ $todayCollectionDetails->gross_weight ? number_format($todayCollectionDetails->gross_weight / 1000, 2) : 0 }} TONS</td>
-                                            <td>{{ $todayCollectionDetails->tare_weight ? number_format($todayCollectionDetails->tare_weight / 1000, 2) : 0 }} TONS</td>
-                                            <td>{{ $todayCollectionDetails->net_weight ? number_format($todayCollectionDetails->net_weight / 1000, 2) : 0 }} TONS</td>
+                                            <td>{{ $todayCollectionDetails->gross_weight ? number_format($todayCollectionDetails->gross_weight / 1000, 2) : 0 }} Tons</td>
+                                            <td>{{ $todayCollectionDetails->tare_weight ? number_format($todayCollectionDetails->tare_weight / 1000, 2) : 0 }} Tons</td>
+                                            <td>{{ $todayCollectionDetails->net_weight ? number_format($todayCollectionDetails->net_weight / 1000, 2) : 0 }} Tons</td>
+                                            <td>{{ $todayCollectionDetails->rounds ? $todayCollectionDetails->rounds : 0 }}</td>
                                         </tr>
                                 </tbody>
                             </table>
@@ -279,7 +281,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <p class="card-text"><strong>Vehicle No: </strong> {{$list->Vehicle_No}}</p>
-                                <p class="card-text"><strong>Net Collection: </strong> {{$list->NetWt / 1000}} TONS</p>
+                                <p class="card-text"><strong>Net Collection: </strong> {{$list->NetWt / 1000}} Tons</p>
                                 <p class="card-text"><strong>Date & Time: </strong> {{$list->Net_Date}}</p>
                             </div>
                         </div>
@@ -462,7 +464,7 @@
     {{-- for pdf --}}
     {{-- <script>
         $(document).ready(function() {
-            $("#buttons-datatables").on("click", ".download-pdf", function(e) {
+            $("#butTons-datatables").on("click", ".download-pdf", function(e) {
                 e.preventDefault();
                 var pdfFileName = $(this).data("pdf-file-name");
                 var pdfUrl = "{{ url('/slips/') }}/" + pdfFileName;
@@ -493,7 +495,7 @@
                 }
             });
 
-            $('#buttons-datatables tbody tr').each(function() {
+            $('#butTons-datatables tbody tr').each(function() {
                 var insuranceEndDate = new Date($(this).find('td:nth-child(5)').text()); // Adjust the index based on your table structure
 
                 // Calculate the difference in days
@@ -507,7 +509,7 @@
                 }
             });
 
-            $('#buttons-datatables tbody tr').each(function() {
+            $('#butTons-datatables tbody tr').each(function() {
                 var fitnessEndDate = new Date($(this).find('td:nth-child(6)').text()); // Adjust the index based on your table structure
 
                 // Calculate the difference in days
