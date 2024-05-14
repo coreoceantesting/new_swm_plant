@@ -28,18 +28,18 @@ class DashboardController extends Controller
         $collectionDetails = [];
 
         foreach ($vendors as $vendor) {
-            $collectionDetails[$vendor->Party_Name]['Today'] = WeightMachine::selectRaw('SUM(NetWt) as net_weight, SUM(GrossWt) as gross_weight, SUM(TareWt) as tare_weight, COUNT(Party_Name) as todays_round')
+            $collectionDetails[$vendor->Party_Name]['Today'] = WeightMachine::selectRaw('SUM(NetWt) as net_weight, SUM(GrossWt) as gross_weight, SUM(TareWt) as tare_weight, COUNT(Party_Name) as rounds')
                 ->whereDate('EntryDate', $today)
                 ->where('Party_Name', $vendor->Party_Name)
                 ->first();
 
-            $collectionDetails[$vendor->Party_Name]['Current Month'] = WeightMachine::selectRaw('SUM(NetWt) as net_weight, SUM(GrossWt) as gross_weight, SUM(TareWt) as tare_weight, COUNT(Party_Name) as current_month_rounds')
+            $collectionDetails[$vendor->Party_Name]['Current Month'] = WeightMachine::selectRaw('SUM(NetWt) as net_weight, SUM(GrossWt) as gross_weight, SUM(TareWt) as tare_weight, COUNT(Party_Name) as rounds')
                 ->whereMonth('EntryDate', now()->month)
                 ->whereYear('EntryDate', now()->year)
                 ->where('Party_Name', $vendor->Party_Name)
                 ->first();
 
-                $collectionDetails[$vendor->Party_Name]['Current Year'] = WeightMachine::selectRaw('SUM(NetWt) as net_weight, SUM(GrossWt) as gross_weight, SUM(TareWt) as tare_weight, COUNT(Party_Name) as current_month_rounds')
+                $collectionDetails[$vendor->Party_Name]['Current Year'] = WeightMachine::selectRaw('SUM(NetWt) as net_weight, SUM(GrossWt) as gross_weight, SUM(TareWt) as tare_weight, COUNT(Party_Name) as rounds')
                 ->whereYear('EntryDate', now()->year)
                 ->where('Party_Name', $vendor->Party_Name)
                 ->first();
@@ -50,7 +50,7 @@ class DashboardController extends Controller
                 // Get the last day of the previous month
                 $lastDayOfPreviousMonth = Carbon::today()->subMonth()->endOfMonth();
 
-                $collectionDetails[$vendor->Party_Name]['Previous Month'] = WeightMachine::selectRaw('SUM(NetWt) as net_weight, SUM(GrossWt) as gross_weight, SUM(TareWt) as tare_weight, COUNT(Party_Name) as current_month_rounds')
+                $collectionDetails[$vendor->Party_Name]['Previous Month'] = WeightMachine::selectRaw('SUM(NetWt) as net_weight, SUM(GrossWt) as gross_weight, SUM(TareWt) as tare_weight, COUNT(Party_Name) as rounds')
                 ->whereBetween('EntryDate', [$firstDayOfPreviousMonth, $lastDayOfPreviousMonth])
                 ->where('Party_Name', $vendor->Party_Name)
                 ->first();

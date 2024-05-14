@@ -361,7 +361,7 @@
                                                         <td>{{ $details->gross_weight ? round($details->gross_weight / 1000, 2) : 0 }} Tons</td>
                                                         <td>{{ $details->tare_weight ? round($details->tare_weight / 1000, 2) : 0 }} Tons</td>
                                                         <td>{{ $details->net_weight ? round($details->net_weight / 1000, 2) : 0 }} Tons</td>
-                                                        <td>{{$details->current_month_rounds ? $details->current_month_rounds : 0}}</td>
+                                                        <td>{{$details->rounds ? $details->rounds : 0}}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
