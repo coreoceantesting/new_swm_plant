@@ -69,6 +69,7 @@ Route::middleware(['auth','PreventBackHistory'])->group(function()
     Route::get('summaryReport', [App\Http\Controllers\ReportController::class, 'summaryReport' ])->name('summaryReport');
     Route::get('vehicleTypeWiseReport', [App\Http\Controllers\ReportController::class, 'vehicleTypeWiseReport' ])->name('vehicleTypeWiseReport');
     Route::get('locationWiseReport', [App\Http\Controllers\ReportController::class, 'locationWiseReport' ])->name('locationWiseReport');
+    Route::get('vehicleroundsreport', [App\Http\Controllers\ReportController::class, 'vehicleroundsreport' ])->name('vehicleroundsreport');
 
     // bar chart
     Route::get('/monthly-collection', [App\Http\Controllers\Admin\DashboardController::class, 'getMonthlyCollectionData'])->name('montly.collection');

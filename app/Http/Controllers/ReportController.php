@@ -44,12 +44,12 @@ class ReportController extends Controller
         $results = $query->selectRaw('Party_Name, SUM(GrossWt) as total_gross_weight, SUM(TareWt) as total_tare_weight, SUM(NetWt) as total_net_weight, COUNT(Party_Name) as total_vehicle_round')
                         ->groupBy('Party_Name')
                         ->get();
-        
+
         return view('reports.summaryReports', compact('results', 'request'));
     }
 
     public function locationWiseReport(Request $request)
-    {   
+    {
         $query = WeightMachine::query();
         if (!empty($request->locationName)) {
             $query->where('Field2', $request->locationName);
@@ -88,6 +88,25 @@ class ReportController extends Controller
 
         $vehicleTypeLists = WeightMachine::whereNotNull('Field1')->distinct()->pluck('Field1');
         return view('reports.vehicleTypeWiseReport', compact('results', 'vehicleTypeLists', 'request'));
+    }
+
+    public function vehicleroundsreport(Request $request)
+    {
+        $query = WeightMachine::query();
+
+        if (!empty($request->fromdate) && !empty($request->todate)) {
+            $query->where(function($q) use ($request) {
+                $q->whereBetween('EntryDate', [$request->fromdate, $request->todate])
+                  ->orWhereDate('EntryDate', $request->fromdate)
+                  ->orWhereDate('EntryDate', $request->todate);
+            });
+        }
+
+        $results = $query->selectRaw('Vehicle_No, COUNT(Vehicle_No) as total_vehicle_round')
+                        ->groupBy('Vehicle_No')
+                        ->get();
+
+        return view('reports.vehicleRoundsreport', compact('results', 'request'));
     }
 
     public function getImages($id)

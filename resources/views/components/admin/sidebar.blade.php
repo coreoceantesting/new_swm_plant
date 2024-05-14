@@ -74,7 +74,7 @@
                                 <a href="{{ route('vehicleTypeWiseReport') }}" class="nav-link" data-key="t-horizontal">Vehicle Type Wise Report</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link" data-key="t-horizontal">Vehicle Round Details</a>
+                                <a href="{{ route('vehicleroundsreport') }}" class="nav-link" data-key="t-horizontal">Vehicle Round Details</a>
                             </li>
                         </ul>
                     </div>
