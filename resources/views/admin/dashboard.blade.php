@@ -5,7 +5,7 @@
             50% { opacity: 0; }
             100% { opacity: 1; }
         }
-    
+
         .blink {
             animation: blink 1s infinite;
         }
@@ -236,7 +236,7 @@
                     </div>
                     <div class="card-body">
                         <div id="users-by-country" data-colors='["--vz-light"]' class="text-center d-none" style="height: 252px"></div>
-    
+
                         <div class="table-responsive">
                             <table id="stockDetailsNew" class="table table-bordered nowrap align-middle" style="width:100%">
                                 <thead>
@@ -281,7 +281,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <p class="card-text"><strong>Vehicle No: </strong> {{$list->Vehicle_No}}</p>
-                                <p class="card-text"><strong>Net Collection: </strong> {{$list->NetWt / 1000}} Tons</p>
+                                <p class="card-text"><strong>Net Collection: </strong> {{ number_format($list->NetWt / 1000, 2) }} Tons</p>
                                 <p class="card-text"><strong>Date & Time: </strong> {{$list->Net_Date}}</p>
                             </div>
                         </div>
@@ -405,7 +405,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="col-xl-6">
             <div class="card border-primary card-height-100">
                 <div class="card-header bg-primary align-items-center d-flex">
@@ -421,7 +421,7 @@
             </div>
         </div>
 
-        
+
 
 
 
@@ -543,7 +543,7 @@
                     }
                 });
             }
-    
+
             // Function to update the chart with data
             function updateChart(data) {
                 var vendorNames = [];
@@ -556,18 +556,18 @@
                 myChart.data.datasets[0].data = totalWeights;
                 myChart.update();
             }
-    
+
             // Trigger the AJAX request for current month data on document ready
             var currentMonth = (new Date()).getMonth() + 1; // JavaScript months are 0-indexed
             fetchMonthlyCollectionData(currentMonth);
-    
+
             // Event listener for month dropdown change
             $('#month-dropdown').change(function() {
                 var selectedMonth = $(this).val();
                 fetchMonthlyCollectionData(selectedMonth);
             });
         });
-    
+
         // Chart initialization
         var ctx = document.getElementById('monthly-collection-chart').getContext('2d');
         var myChart = new Chart(ctx, {
@@ -617,7 +617,7 @@
                 }
             });
         });
-        
+
         var ctx = document.getElementById('daily-collection-chart').getContext('2d');
         var myChartNew = new Chart(ctx, {
             type: 'bar',
@@ -645,7 +645,7 @@
                 }
             }
         });
-    
+
         function updateChartNew(data) {
             var vendors = Object.keys(data);
             vendors.forEach(function(vendor) {
