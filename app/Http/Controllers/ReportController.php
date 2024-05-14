@@ -63,7 +63,7 @@ class ReportController extends Controller
             });
         }
 
-        $results = $query->select('id','Field2','Party_Name','EntryDate', 'Vehicle_No', 'GrossWt', 'TareWt','NetWt', 'Img1','Img2','Img3','Img4','Img5','Img6','Img7','Img8')->orderBy('id', 'desc')->get();
+        $results = $query->select('id','Field2','Party_Name','EntryDate', 'Vehicle_No', 'GrossWt', 'TareWt','NetWt')->orderBy('id', 'desc')->get();
 
         $locationLists = WeightMachine::whereNotNull('Field2')->distinct()->pluck('Field2');
         return view('reports.locationWiseReport', compact('results', 'locationLists', 'request'));
@@ -84,7 +84,7 @@ class ReportController extends Controller
             });
         }
 
-        $results = $query->select('id','Field1','Party_Name','EntryDate', 'Vehicle_No', 'GrossWt', 'TareWt','NetWt', 'Img1','Img2','Img3','Img4','Img5','Img6','Img7','Img8')->orderBy('id', 'desc')->get();
+        $results = $query->select('id','Field1','Party_Name','EntryDate', 'Vehicle_No', 'GrossWt', 'TareWt','NetWt')->orderBy('id', 'desc')->get();
 
         $vehicleTypeLists = WeightMachine::whereNotNull('Field1')->distinct()->pluck('Field1');
         return view('reports.vehicleTypeWiseReport', compact('results', 'vehicleTypeLists', 'request'));
