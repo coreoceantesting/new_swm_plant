@@ -64,7 +64,7 @@ Route::middleware(['auth','PreventBackHistory'])->group(function()
     Route::put('users/{user}/assign-role', [App\Http\Controllers\Admin\UserController::class, 'assignRole' ])->name('users.assign-role');
     Route::resource('roles', App\Http\Controllers\Admin\RoleController::class );
 
-    // reports
+    // reports test
     Route::get('vendorWiseReport', [App\Http\Controllers\ReportController::class, 'vendorWiseReport' ])->name('vendorWiseReport');
     Route::get('summaryReport', [App\Http\Controllers\ReportController::class, 'summaryReport' ])->name('summaryReport');
     Route::get('vehicleTypeWiseReport', [App\Http\Controllers\ReportController::class, 'vehicleTypeWiseReport' ])->name('vehicleTypeWiseReport');
