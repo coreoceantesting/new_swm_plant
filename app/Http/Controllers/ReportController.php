@@ -33,6 +33,14 @@ class ReportController extends Controller
     {
         $query = WeightMachine::query();
 
+        if (!empty($request->vendorName)) {
+            $query->where('Party_Name', $request->vendorName);
+        }
+
+        if (!empty($request->locationName)) {
+            $query->where('Field2', $request->locationName);
+        }
+
         if (!empty($request->fromdate) && !empty($request->todate)) {
             $query->where(function($q) use ($request) {
                 $q->whereBetween('EntryDate', [$request->fromdate, $request->todate])
@@ -45,7 +53,9 @@ class ReportController extends Controller
                         ->groupBy('Party_Name')
                         ->get();
 
-        return view('reports.summaryReports', compact('results', 'request'));
+        $locationLists = WeightMachine::whereNotNull('Field2')->distinct()->pluck('Field2');
+        $vendorLists = WeightMachine::distinct()->pluck('Party_Name');
+        return view('reports.summaryReports', compact('results', 'request', 'locationLists', 'vendorLists'));
     }
 
     public function locationWiseReport(Request $request)

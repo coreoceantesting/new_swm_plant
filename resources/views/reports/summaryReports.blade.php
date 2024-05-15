@@ -11,6 +11,24 @@
                             @csrf
                             <div class="row">
                                 <div class="col-sm-3">
+                                    <label class="col-form-label" for="vendorName">Vendor Name <span class="text-danger">*</span></label>
+                                    <select class="form-control" name="vendorName" id="vendorName">
+                                        <option value="">Select Vendor</option>
+                                        @foreach($vendorLists as $list)
+                                            <option value="{{ $list }}" {{ $list == $request->vendorName ? 'selected' : '' }}>{{ $list }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="col-form-label" for="locationName">Locations <span class="text-danger">*</span></label>
+                                    <select class="form-control" name="locationName" id="locationName">
+                                        <option value="">Select Location</option>
+                                        @foreach($locationLists as $list)
+                                            <option value="{{ $list }}" {{ $list == $request->locationName ? 'selected' : '' }}>{{ $list }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-sm-3">
                                     <label class="col-form-label" for="fromdate">From Date <span class="text-danger">*</span></label>
                                     <input class="form-control" id="fromdate" name="fromdate" value="{{ $request->fromdate ?? '' }}" type="date">
                                 </div>
