@@ -29,7 +29,7 @@
                                             <b>Todays's Net Collection</b>
                                         </a>
                                         <h2 class="mt-4 ff-secondary fw-semibold">
-                                            <span class="counter-value text-primary" data-target="{{ $todayNetCollectionSum / 1000 }}">{{ $todayNetCollectionSum  / 1000}}</span> <small class="text-primary">Tons</small>
+                                            <span class="counter-value text-primary" data-target="{{ number_format($todayNetCollectionSum / 1000, 2) }}">{{ number_format($todayNetCollectionSum  / 1000, 2) }}</span> <small class="text-primary">Tons</small>
                                         </h2>
                                         <p class="mb-0 text-muted" style="display: none">
                                             <span class="badge bg-light text-success mb-0"><i class="ri-arrow-up-line align-middle"></i>
