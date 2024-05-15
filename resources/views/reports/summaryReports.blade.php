@@ -31,14 +31,14 @@
                                 <thead>
                                     <tr>
                                         <th>Vendor Name</th>
-                                        <th>Total Gross Weight</th>
-                                        <th>Total Tare Weight</th>
                                         @if ($request->fromdate)
                                             <th>From Date</th>
                                         @endif
                                         @if ($request->todate)
                                             <th>To Date</th>
                                         @endif
+                                        <th>Total Gross Weight</th>
+                                        <th>Total Tare Weight</th>
                                         <th>Total Net Weight</th>
                                         <th>Total Vehicle Round</th>
                                     </tr>
