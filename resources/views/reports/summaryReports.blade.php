@@ -33,6 +33,12 @@
                                         <th>Vendor Name</th>
                                         <th>Total Gross Weight</th>
                                         <th>Total Tare Weight</th>
+                                        @if ($request->fromdate)
+                                            <th>From Date</th>
+                                        @endif
+                                        @if ($request->todate)
+                                            <th>To Date</th>
+                                        @endif
                                         <th>Total Net Weight</th>
                                         <th>Total Vehicle Round</th>
                                     </tr>
@@ -41,6 +47,12 @@
                                     @foreach ($results as $result)
                                         <tr>
                                             <td>{{ $result->Party_Name }}</td>
+                                            @if ($request->fromdate)
+                                                <th>{{ $request->fromdate }}</th>
+                                            @endif
+                                            @if ($request->todate)
+                                                <th>{{ $request->todate }}</th>
+                                            @endif
                                             <td>{{ $result->total_gross_weight / 1000 }} / Tons</td>
                                             <td>{{ $result->total_tare_weight / 1000}} / Tons</td>
                                             <td>{{ $result->total_net_weight / 1000}} / Tons</td>
