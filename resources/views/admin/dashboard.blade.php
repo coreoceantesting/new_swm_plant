@@ -282,7 +282,7 @@
                             <div class="card-body">
                                 <p class="card-text"><strong>Vehicle No: </strong> {{$list->Vehicle_No}}</p>
                                 <p class="card-text"><strong>Net Collection: </strong> {{ number_format($list->NetWt / 1000, 2) }} Tons</p>
-                                <p class="card-text"><strong>Date & Time: </strong> {{$list->Net_Date}}</p>
+                                <p class="card-text"><strong>Date & Time: </strong> {{\Carbon\Carbon::parse($list->Net_Date)->format('Y-m-d h:i:s A')}}</p>
                             </div>
                         </div>
                     @endforeach

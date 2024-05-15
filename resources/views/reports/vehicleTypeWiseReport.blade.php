@@ -56,7 +56,7 @@
                                             <td>{{ $index + 1 }}</td>
                                             <td>{{ $result->Party_Name }}</td>
                                             <td>{{ $result->Field1 }}</td>
-                                            <td>{{ $result->EntryDate }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($result->EntryDate)->format('Y-m-d h:i:s A') }}</td>
                                             <td>{{ $result->Vehicle_No }}</td>
                                             <td>{{ $result->GrossWt / 1000}} / Tons</td>
                                             <td>{{ $result->TareWt / 1000}} / Tons</td>
@@ -65,7 +65,7 @@
                                                 <button type="button" class="btn btn-primary open-modal" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $result->id }}" data-id="{{ $result->id }}">
                                                   View
                                                 </button>
-                                              
+
                                                 <div class="modal fade" id="exampleModal{{ $result->id }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ $result->id }}" aria-hidden="true">
                                                   <div class="modal-dialog modal-xl" role="document">
                                                     <div class="modal-content">
@@ -85,7 +85,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        
+
                                     @endforeach
                             </table>
                         </div>
