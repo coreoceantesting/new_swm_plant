@@ -15,10 +15,11 @@ class DashboardController extends Controller
     public function index()
     {
         $vendors = WeightMachine::select('Party_Name')->distinct()->get();
+        $locations = WeightMachine::select('Field2')->whereNotNull('Field2')->distinct()->get();
         $today = Carbon::today();
         // Today's net collection sum
         $todayNetCollectionSum = WeightMachine::whereDate('EntryDate', $today)->sum('NetWt');
-        $latestVehicle = WeightMachine::orderBy('id','desc')->take(6)->get();
+        $latestVehicle = WeightMachine::orderBy('id','desc')->take(3)->get();
 
         $todayCollectionDetails = WeightMachine::selectRaw('SUM(NetWt) as net_weight, SUM(GrossWt) as gross_weight, SUM(TareWt) as tare_weight, count(Party_Name) as rounds')
         ->whereDate('EntryDate', $today)
@@ -26,6 +27,7 @@ class DashboardController extends Controller
 
         // vendorwise Detail Section Start
         $collectionDetails = [];
+        $wardWiseCollectionDetails = [];
 
         foreach ($vendors as $vendor) {
             $collectionDetails[$vendor->Party_Name]['Today'] = WeightMachine::selectRaw('SUM(NetWt) as net_weight, SUM(GrossWt) as gross_weight, SUM(TareWt) as tare_weight, COUNT(Party_Name) as rounds')
@@ -60,6 +62,40 @@ class DashboardController extends Controller
 
         // vendorwise Detail Section End
 
+        // wardwise Detail Section Start
+        foreach ($locations as $location) {
+            $locationName = $location->Field2;
+            $wardWiseCollectionDetails[$locationName]['Today'] = WeightMachine::selectRaw('SUM(NetWt) as net_weight, SUM(GrossWt) as gross_weight, SUM(TareWt) as tare_weight, COUNT(Party_Name) as rounds')
+                ->whereDate('EntryDate', $today)
+                ->where('Field2', $locationName)
+                ->first();
+
+            $wardWiseCollectionDetails[$locationName]['Current Month'] = WeightMachine::selectRaw('SUM(NetWt) as net_weight, SUM(GrossWt) as gross_weight, SUM(TareWt) as tare_weight, COUNT(Party_Name) as rounds')
+                ->whereMonth('EntryDate', now()->month)
+                ->whereYear('EntryDate', now()->year)
+                ->where('Field2', $locationName)
+                ->first();
+
+                $wardWiseCollectionDetails[$locationName]['Current Year'] = WeightMachine::selectRaw('SUM(NetWt) as net_weight, SUM(GrossWt) as gross_weight, SUM(TareWt) as tare_weight, COUNT(Party_Name) as rounds')
+                ->whereYear('EntryDate', now()->year)
+                ->where('Field2', $locationName)
+                ->first();
+
+                // Get the first day of the previous month
+                $firstDayOfPreviousMonthNew = Carbon::today()->subMonth()->startOfMonth();
+
+                // Get the last day of the previous month
+                $lastDayOfPreviousMonthNew = Carbon::today()->subMonth()->endOfMonth();
+
+                $wardWiseCollectionDetails[$locationName]['Previous Month'] = WeightMachine::selectRaw('SUM(NetWt) as net_weight, SUM(GrossWt) as gross_weight, SUM(TareWt) as tare_weight, COUNT(Party_Name) as rounds')
+                ->whereBetween('EntryDate', [$firstDayOfPreviousMonthNew, $lastDayOfPreviousMonthNew])
+                ->where('Field2', $locationName)
+                ->first();
+
+            // Repeat the same for previous month and current year
+        }
+        // Wardwise Details Section End
+
         // Monthly net collection sum
         $monthlyNetCollectionSum = WeightMachine::whereYear('EntryDate', $today->year)
         ->whereMonth('EntryDate', $today->month)
@@ -80,7 +116,7 @@ class DashboardController extends Controller
                         ->groupBy('Field2')
                         ->get();
 
-        return view('admin.dashboard',compact('vendors', 'todayNetCollectionSum', 'collectionDetails', 'latestVehicle', 'todayCollectionDetails', 'monthlyNetCollectionSum', 'yearlyNetCollectionSum', 'vendorAndVehicleCount', 'vendorCount', 'vehicleCount','wardWiseSummaryReport'));
+        return view('admin.dashboard',compact('vendors', 'todayNetCollectionSum', 'collectionDetails', 'latestVehicle', 'todayCollectionDetails', 'monthlyNetCollectionSum', 'yearlyNetCollectionSum', 'vendorAndVehicleCount', 'vendorCount', 'vehicleCount','wardWiseSummaryReport', 'wardWiseCollectionDetails', 'locations'));
     }
 
     public function getMonthlyCollectionData(Request $request)

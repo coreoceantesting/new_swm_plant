@@ -261,7 +261,7 @@
                     <!-- end card body -->
                 </div>
                 {{-- summary report --}}
-                <div class="card border-primary card-height-100" style="display: block">
+                <div class="card border-primary card-height-100" style="display: none">
                     <div class="card-header bg-primary align-items-center d-flex">
                         <h4 class="card-title text-white mb-0 flex-grow-1">
                             WardWise Summary Report
@@ -372,7 +372,7 @@
             <!-- end card -->
         </div><!--end col-->
 
-        <div class="col-xl-12">
+        <div class="col-xl-12 d-none">
             @foreach($vendors as $vendor)
                 <div class="card border-primary card-height-10">
                     <div class="card-header bg-primary align-items-center d-flex">
@@ -417,6 +417,142 @@
                     </div>
                 </div>
             @endforeach
+        </div>
+
+        <div class="col-xl-12">
+            <div class="card border-primary card-height-100" style="display: block">
+                <div class="card-header bg-primary align-items-center d-flex">
+                    <h4 class="card-title text-white mb-0 flex-grow-1">
+                        Ward Wise Collection Details
+                    </h4>
+                    <div>
+                        <a href="#" class="btn btn-soft-secondary btn-sm d-none">
+                            View All
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="users-by-country" data-colors='["--vz-light"]' class="text-center d-none" style="height: 252px"></div>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Ward Name</th>
+                                    <th colspan="4">Today</th>
+                                    <th colspan="4">Current Month</th>
+                                    <th colspan="4">Previous Month</th>
+                                    <th colspan="4">Current Year</th>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <th>Gross Weight (Tons)</th>
+                                    <th>Tare Weight (Tons)</th>
+                                    <th>Net Weight (Tons)</th>
+                                    <th>Rounds</th>
+                                    <th>Gross Weight (Tons)</th>
+                                    <th>Tare Weight (Tons)</th>
+                                    <th>Net Weight (Tons)</th>
+                                    <th>Rounds</th>
+                                    <th>Gross Weight (Tons)</th>
+                                    <th>Tare Weight (Tons)</th>
+                                    <th>Net Weight (Tons)</th>
+                                    <th>Rounds</th>
+                                    <th>Gross Weight (Tons)</th>
+                                    <th>Tare Weight (Tons)</th>
+                                    <th>Net Weight (Tons)</th>
+                                    <th>Rounds</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($locations as $location)
+                                    <tr>
+                                        <td>{{ $location->Field2 }}</td>
+                                        @foreach(['Today', 'Current Month', 'Previous Month', 'Current Year'] as $period)
+                                            @php
+                                                $details = $wardWiseCollectionDetails[$location->Field2][$period];
+                                            @endphp
+                                            <td>{{ $details->gross_weight ? round($details->gross_weight / 1000, 2) : 0 }}</td>
+                                            <td>{{ $details->tare_weight ? round($details->tare_weight / 1000, 2) : 0 }}</td>
+                                            <td>{{ $details->net_weight ? round($details->net_weight / 1000, 2) : 0 }}</td>
+                                            <td>{{ $details->rounds ? $details->rounds : 0 }}</td>
+                                        @endforeach
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- end card body -->
+            </div>
+        </div>
+
+        <div class="col-xl-12">
+            <div class="card border-primary card-height-100" style="display: block">
+                <div class="card-header bg-primary align-items-center d-flex">
+                    <h4 class="card-title text-white mb-0 flex-grow-1">
+                        Vendor Wise Collection Details
+                    </h4>
+                    <div>
+                        <a href="#" class="btn btn-soft-secondary btn-sm d-none">
+                            View All
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="users-by-country" data-colors='["--vz-light"]' class="text-center d-none" style="height: 252px"></div>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Vendor Name</th>
+                                    <th colspan="4">Today</th>
+                                    <th colspan="4">Current Month</th>
+                                    <th colspan="4">Previous Month</th>
+                                    <th colspan="4">Current Year</th>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <th>Gross Weight (Tons)</th>
+                                    <th>Tare Weight (Tons)</th>
+                                    <th>Net Weight (Tons)</th>
+                                    <th>Rounds</th>
+                                    <th>Gross Weight (Tons)</th>
+                                    <th>Tare Weight (Tons)</th>
+                                    <th>Net Weight (Tons)</th>
+                                    <th>Rounds</th>
+                                    <th>Gross Weight (Tons)</th>
+                                    <th>Tare Weight (Tons)</th>
+                                    <th>Net Weight (Tons)</th>
+                                    <th>Rounds</th>
+                                    <th>Gross Weight (Tons)</th>
+                                    <th>Tare Weight (Tons)</th>
+                                    <th>Net Weight (Tons)</th>
+                                    <th>Rounds</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($vendors as $vendor)
+                                    <tr>
+                                        <td>{{ $vendor->Party_Name }}</td>
+                                        @foreach(['Today', 'Current Month', 'Previous Month', 'Current Year'] as $period)
+                                            @php
+                                                $details = $collectionDetails[$vendor->Party_Name][$period];
+                                            @endphp
+                                            <td>{{ $details->gross_weight ? round($details->gross_weight / 1000, 2) : 0 }}</td>
+                                            <td>{{ $details->tare_weight ? round($details->tare_weight / 1000, 2) : 0 }}</td>
+                                            <td>{{ $details->net_weight ? round($details->net_weight / 1000, 2) : 0 }}</td>
+                                            <td>{{ $details->rounds ? $details->rounds : 0 }}</td>
+                                        @endforeach
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- end card body -->
+            </div>
         </div>
 
         <div class="col-xl-6">
