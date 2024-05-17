@@ -15,6 +15,10 @@ class ReportController extends Controller
             $query->where('Party_Name', $request->vendorName);
         }
 
+        if (!empty($request->locationName)) {
+            $query->where('Field2', $request->locationName);
+        }
+
         if (!empty($request->fromdate) && !empty($request->todate)) {
             $query->where(function($q) use ($request) {
                 $q->whereBetween('EntryDate', [$request->fromdate, $request->todate])
@@ -23,10 +27,11 @@ class ReportController extends Controller
             });
         }
 
-        $results = $query->select('id','Party_Name','EntryDate', 'Vehicle_No', 'GrossWt', 'TareWt','NetWt', 'Field1')->orderBy('id', 'desc')->get();
+        $results = $query->select('id','Party_Name','EntryDate', 'Vehicle_No', 'GrossWt', 'TareWt','NetWt', 'Field1', 'Field2')->orderBy('id', 'desc')->get();
 
         $vendorLists = WeightMachine::distinct()->pluck('Party_Name');
-        return view('reports.vendorWiseCollection', compact('vendorLists', 'results', 'request'));
+        $locationLists = WeightMachine::whereNotNull('Field2')->distinct()->pluck('Field2');
+        return view('reports.vendorWiseCollection', compact('vendorLists', 'results', 'request', 'locationLists'));
     }
 
     public function summaryReport(Request $request)

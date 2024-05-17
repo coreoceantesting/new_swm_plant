@@ -1,13 +1,13 @@
 <x-admin.layout>
-    <x-slot name="title">Vendor Wise Collection</x-slot>
-    <x-slot name="heading">Vendor Wise Collection</x-slot>
+    <x-slot name="title">Vendor Wise Collection Report</x-slot>
+    <x-slot name="heading">Vendor Wise Collection Report</x-slot>
     {{-- <x-slot name="subheading">Test</x-slot> --}}
 
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <form class="theme-form" name="addForm" id="addForm" enctype="multipart/form-data">
+                        <form class="theme-form" name="addForm" id="addForm" enctype="multipart/form-data" onsubmit="return validateForm()">
                             @csrf
                             <div class="row">
                                 <div class="col-sm-3">
@@ -16,6 +16,15 @@
                                         <option value="">Select Vendor</option>
                                         @foreach($vendorLists as $list)
                                             <option value="{{ $list }}" {{ $list == $request->vendorName ? 'selected' : '' }}>{{ $list }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="col-form-label" for="locationName">Location Name <span class="text-danger">*</span></label>
+                                    <select class="form-control" name="locationName" id="locationName">
+                                        <option value="">Select Location</option>
+                                        @foreach($locationLists as $list)
+                                            <option value="{{ $list }}" {{ $list == $request->locationName ? 'selected' : '' }}>{{ $list }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -41,9 +50,10 @@
                                     <tr>
                                         <th>SR.NO</th>
                                         <th>Vendor Name</th>
+                                        <th>Location</th>
                                         <th>Date & Time </th>
                                         <th>Vehicle Type</th>
-                                        <th>Vehicle No</th>
+                                        <th>Vehicle Number</th>
                                         <th>Gross Weight</th>
                                         <th>Tare Weight</th>
                                         <th>Net Weight</th>
@@ -55,12 +65,13 @@
                                         <tr>
                                             <td>{{ $index + 1 }}</td>
                                             <td>{{ $result->Party_Name }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($result->EntryDate)->format('Y-m-d h:i:s A') }}</td>
+                                            <td>{{ $result->Field2 }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($result->EntryDate)->format('d-m-Y h:i:s A') }}</td>
                                             <td>{{ $result->Field1 }}</td>
                                             <td>{{ $result->Vehicle_No }}</td>
-                                            <td>{{ $result->GrossWt / 1000 }} / Tons</td>
-                                            <td>{{ $result->TareWt / 1000}} / Tons</td>
-                                            <td>{{ $result->NetWt / 1000}} / Tons</td>
+                                            <td>{{ number_format($result->GrossWt / 1000, 2) }} / Tons</td>
+                                            <td>{{ number_format($result->TareWt / 1000, 2) }} / Tons</td>
+                                            <td>{{ number_format($result->NetWt / 1000, 2) }} / Tons</td>
                                             <td>
                                                 <button type="button" class="btn btn-primary open-modal" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $result->id }}" data-id="{{ $result->id }}">
                                                   View
@@ -115,3 +126,23 @@
         });
     });
 </script>
+
+<script>
+    function validateForm() {
+        const fromDate = document.getElementById('fromdate').value;
+        const toDate = document.getElementById('todate').value;
+
+        if (!fromDate || !toDate) {
+            alert('Both From Date and To Date are required.');
+            return false;
+        }
+
+        if (new Date(toDate) < new Date(fromDate)) {
+            alert('To Date must be greater than or equal to From Date.');
+            return false;
+        }
+
+        return true;
+    }
+    </script>
+

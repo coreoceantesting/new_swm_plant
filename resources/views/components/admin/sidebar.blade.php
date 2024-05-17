@@ -62,14 +62,14 @@
                     <div class="collapse menu-dropdown" id="sidebarLayouts">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="{{ route('vendorWiseReport') }}" class="nav-link" data-key="t-horizontal">Vendor Wise Collection</a>
+                                <a href="{{ route('vendorWiseReport') }}" class="nav-link" data-key="t-horizontal">Vendor Wise Collection Report</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('summaryReport') }}" class="nav-link" data-key="t-horizontal">Summary Report</a>
+                                <a href="{{ route('summaryReport') }}" class="nav-link" data-key="t-horizontal">Vendor Wise Summary Report</a>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a href="{{ route('locationWiseReport') }}" class="nav-link" data-key="t-horizontal">Location Wise Report</a>
-                            </li>
+                            </li> --}}
                             <li class="nav-item">
                                 <a href="{{ route('vehicleTypeWiseReport') }}" class="nav-link" data-key="t-horizontal">Vehicle Type Wise Report</a>
                             </li>
