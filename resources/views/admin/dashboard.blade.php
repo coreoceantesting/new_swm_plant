@@ -260,6 +260,48 @@
                     </div>
                     <!-- end card body -->
                 </div>
+                {{-- summary report --}}
+                <div class="card border-primary card-height-100" style="display: block">
+                    <div class="card-header bg-primary align-items-center d-flex">
+                        <h4 class="card-title text-white mb-0 flex-grow-1">
+                            WardWise Summary Report
+                        </h4>
+                        <div>
+                            <a href="#" class="btn btn-soft-secondary btn-sm d-none">
+                                View All
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="users-by-country" data-colors='["--vz-light"]' class="text-center d-none" style="height: 252px"></div>
+
+                        <div class="table-responsive">
+                            <table id="stockDetailsNew" class="table table-bordered nowrap align-middle" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Ward Name</th>
+                                        <th>Total Gross Weight</th>
+                                        <th>Total Tare Weight</th>
+                                        <th>Total Net Weight</th>
+                                        <th>Total Vehicle Round</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($wardWiseSummaryReport as $result)
+                                        <tr>
+                                            <td>{{ $result->Field2 }}</td>
+                                            <td>{{ $result->total_gross_weight  ? number_format($result->total_gross_weight / 1000, 2) : 0 }} / Tons</td>
+                                            <td>{{ $result->total_tare_weight ? number_format($result->total_tare_weight / 1000, 2) : 0}} / Tons</td>
+                                            <td>{{ $result->total_net_weight ? number_format($result->total_net_weight / 1000, 2) : 0}} / Tons</td>
+                                            <td>{{ $result->total_vehicle_round ? $result->total_vehicle_round : 0}}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- end card body -->
+                </div>
                 <!-- end card -->
 
             </div>

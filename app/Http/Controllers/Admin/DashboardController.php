@@ -76,7 +76,11 @@ class DashboardController extends Controller
         $vendorCount = $vendorAndVehicleCount->vendor_count;
         $vehicleCount = $vendorAndVehicleCount->vehicle_count;
 
-        return view('admin.dashboard',compact('vendors', 'todayNetCollectionSum', 'collectionDetails', 'latestVehicle', 'todayCollectionDetails', 'monthlyNetCollectionSum', 'yearlyNetCollectionSum', 'vendorAndVehicleCount', 'vendorCount', 'vehicleCount'));
+        $wardWiseSummaryReport = WeightMachine::selectRaw('Field2, SUM(GrossWt) as total_gross_weight, SUM(TareWt) as total_tare_weight, SUM(NetWt) as total_net_weight, COUNT(Party_Name) as total_vehicle_round')
+                        ->groupBy('Field2')
+                        ->get();
+
+        return view('admin.dashboard',compact('vendors', 'todayNetCollectionSum', 'collectionDetails', 'latestVehicle', 'todayCollectionDetails', 'monthlyNetCollectionSum', 'yearlyNetCollectionSum', 'vendorAndVehicleCount', 'vendorCount', 'vehicleCount','wardWiseSummaryReport'));
     }
 
     public function getMonthlyCollectionData(Request $request)
