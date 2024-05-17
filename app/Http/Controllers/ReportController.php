@@ -42,10 +42,6 @@ class ReportController extends Controller
             $query->where('Party_Name', $request->vendorName);
         }
 
-        if (!empty($request->locationName)) {
-            $query->where('Field2', $request->locationName);
-        }
-
         if (!empty($request->fromdate) && !empty($request->todate)) {
             $query->where(function($q) use ($request) {
                 $q->whereBetween('EntryDate', [$request->fromdate, $request->todate])

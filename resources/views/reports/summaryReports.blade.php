@@ -1,13 +1,13 @@
 <x-admin.layout>
-    <x-slot name="title">Summary Report</x-slot>
-    <x-slot name="heading">Summary Report</x-slot>
+    <x-slot name="title">Vendor Wise Summary Report</x-slot>
+    <x-slot name="heading">Vendor Wise Summary Report</x-slot>
     {{-- <x-slot name="subheading">Test</x-slot> --}}
 
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <form class="theme-form" name="addForm" id="addForm" enctype="multipart/form-data">
+                        <form class="theme-form" name="addForm" id="addForm" enctype="multipart/form-data" onsubmit="return validateForm()">
                             @csrf
                             <div class="row">
                                 <div class="col-sm-3">
@@ -16,15 +16,6 @@
                                         <option value="">Select Vendor</option>
                                         @foreach($vendorLists as $list)
                                             <option value="{{ $list }}" {{ $list == $request->vendorName ? 'selected' : '' }}>{{ $list }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-sm-3">
-                                    <label class="col-form-label" for="locationName">Locations <span class="text-danger">*</span></label>
-                                    <select class="form-control" name="locationName" id="locationName">
-                                        <option value="">Select Location</option>
-                                        @foreach($locationLists as $list)
-                                            <option value="{{ $list }}" {{ $list == $request->locationName ? 'selected' : '' }}>{{ $list }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -49,12 +40,12 @@
                                 <thead>
                                     <tr>
                                         <th>Vendor Name</th>
-                                        @if ($request->fromdate)
+                                        {{-- @if ($request->fromdate)
                                             <th>From Date</th>
                                         @endif
                                         @if ($request->todate)
                                             <th>To Date</th>
-                                        @endif
+                                        @endif --}}
                                         <th>Total Gross Weight</th>
                                         <th>Total Tare Weight</th>
                                         <th>Total Net Weight</th>
@@ -65,15 +56,15 @@
                                     @foreach ($results as $result)
                                         <tr>
                                             <td>{{ $result->Party_Name }}</td>
-                                            @if ($request->fromdate)
+                                            {{-- @if ($request->fromdate)
                                                 <th>{{ $request->fromdate }}</th>
                                             @endif
                                             @if ($request->todate)
                                                 <th>{{ $request->todate }}</th>
-                                            @endif
-                                            <td>{{ $result->total_gross_weight / 1000 }} / Tons</td>
-                                            <td>{{ $result->total_tare_weight / 1000}} / Tons</td>
-                                            <td>{{ $result->total_net_weight / 1000}} / Tons</td>
+                                            @endif --}}
+                                            <td>{{ number_format($result->total_gross_weight / 1000, 2) }} / Tons</td>
+                                            <td>{{ number_format($result->total_tare_weight / 1000, 2) }} / Tons</td>
+                                            <td>{{ number_format($result->total_net_weight / 1000, 2) }} / Tons</td>
                                             <td>{{ $result->total_vehicle_round }}</td>
                                         </tr>
                                     @endforeach
@@ -86,3 +77,22 @@
 
 
 </x-admin.layout>
+
+<script>
+    function validateForm() {
+        const fromDate = document.getElementById('fromdate').value;
+        const toDate = document.getElementById('todate').value;
+
+        if (!fromDate || !toDate) {
+            alert('Both From Date and To Date are required.');
+            return false;
+        }
+
+        if (new Date(toDate) < new Date(fromDate)) {
+            alert('To Date must be greater than or equal to From Date.');
+            return false;
+        }
+
+        return true;
+    }
+    </script>
