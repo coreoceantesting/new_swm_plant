@@ -71,6 +71,9 @@
                                 <a href="{{ route('locationWiseReport') }}" class="nav-link" data-key="t-horizontal">Location Wise Report</a>
                             </li> --}}
                             <li class="nav-item">
+                                <a href="{{ route('wardWisesummaryReport') }}" class="nav-link" data-key="t-horizontal">Ward Wise Summary Report</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="{{ route('vehicleTypeWiseReport') }}" class="nav-link" data-key="t-horizontal">Vehicle Type Wise Report</a>
                             </li>
                             <li class="nav-item">

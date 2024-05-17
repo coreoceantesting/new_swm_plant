@@ -7,7 +7,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <form class="theme-form" action="{{route('locationWiseReport')}}" method="GET" enctype="multipart/form-data">
+                        <form class="theme-form" action="{{route('locationWiseReport')}}" method="GET" enctype="multipart/form-data" onsubmit="return validateForm()">
                             @csrf
                             <div class="row">
                                 <div class="col-sm-3">
@@ -43,7 +43,7 @@
                                         <th>Vendor Name</th>
                                         <th>Location Name</th>
                                         <th>Date & Time </th>
-                                        <th>Vehicle No</th>
+                                        <th>Vehicle Number</th>
                                         <th>Gross Weight</th>
                                         <th>Tare Weight</th>
                                         <th>Net Weight</th>
@@ -56,7 +56,7 @@
                                             <td>{{ $index + 1 }}</td>
                                             <td>{{ $result->Party_Name }}</td>
                                             <td>{{ $result->Field2 }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($result->EntryDate)->format('Y-m-d h:i:s A') }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($result->EntryDate)->format('d-m-Y h:i:s A') }}</td>
                                             <td>{{ $result->Vehicle_No }}</td>
                                             <td>{{ $result->GrossWt / 1000}} / Tons</td>
                                             <td>{{ $result->TareWt / 1000}} / Tons</td>
@@ -114,4 +114,23 @@
             });
         });
     });
+</script>
+
+<script>
+    function validateForm() {
+        const fromDate = document.getElementById('fromdate').value;
+        const toDate = document.getElementById('todate').value;
+
+        if (!fromDate || !toDate) {
+            alert('Both From Date and To Date are required.');
+            return false;
+        }
+
+        if (new Date(toDate) < new Date(fromDate)) {
+            alert('To Date must be greater than or equal to From Date.');
+            return false;
+        }
+
+        return true;
+    }
 </script>

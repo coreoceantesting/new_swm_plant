@@ -67,6 +67,7 @@ Route::middleware(['auth','PreventBackHistory'])->group(function()
     // reports test
     Route::get('vendorWiseReport', [App\Http\Controllers\ReportController::class, 'vendorWiseReport' ])->name('vendorWiseReport');
     Route::get('summaryReport', [App\Http\Controllers\ReportController::class, 'summaryReport' ])->name('summaryReport');
+    Route::get('wardWisesummaryReport', [App\Http\Controllers\ReportController::class, 'wardWisesummaryReport' ])->name('wardWisesummaryReport');
     Route::get('vehicleTypeWiseReport', [App\Http\Controllers\ReportController::class, 'vehicleTypeWiseReport' ])->name('vehicleTypeWiseReport');
     Route::get('locationWiseReport', [App\Http\Controllers\ReportController::class, 'locationWiseReport' ])->name('locationWiseReport');
     Route::get('vehicleroundsreport', [App\Http\Controllers\ReportController::class, 'vehicleroundsreport' ])->name('vehicleroundsreport');

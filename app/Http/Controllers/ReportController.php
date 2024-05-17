@@ -120,6 +120,30 @@ class ReportController extends Controller
         return view('reports.vehicleRoundsreport', compact('results', 'request'));
     }
 
+    public function wardWisesummaryReport(Request $request)
+    {
+        $query = WeightMachine::query();
+
+        if (!empty($request->locationName)) {
+            $query->where('Field2', $request->locationName);
+        }
+
+        if (!empty($request->fromdate) && !empty($request->todate)) {
+            $query->where(function($q) use ($request) {
+                $q->whereBetween('EntryDate', [$request->fromdate, $request->todate])
+                  ->orWhereDate('EntryDate', $request->fromdate)
+                  ->orWhereDate('EntryDate', $request->todate);
+            });
+        }
+
+        $results = $query->selectRaw('Field2, SUM(GrossWt) as total_gross_weight, SUM(TareWt) as total_tare_weight, SUM(NetWt) as total_net_weight, COUNT(Party_Name) as total_vehicle_round')
+                        ->groupBy('Field2')
+                        ->get();
+
+        $locationLists = WeightMachine::whereNotNull('Field2')->distinct()->pluck('Field2');
+        return view('reports.wardWiseSummaryReports', compact('results', 'request', 'locationLists'));
+    }
+
     public function getImages($id)
     {
         $result = WeightMachine::findOrFail($id);
