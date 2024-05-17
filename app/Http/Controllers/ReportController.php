@@ -23,7 +23,7 @@ class ReportController extends Controller
             });
         }
 
-        $results = $query->select('id','Party_Name','EntryDate', 'Vehicle_No', 'GrossWt', 'TareWt','NetWt')->orderBy('id', 'desc')->get();
+        $results = $query->select('id','Party_Name','EntryDate', 'Vehicle_No', 'GrossWt', 'TareWt','NetWt', 'Field1')->orderBy('id', 'desc')->get();
 
         $vendorLists = WeightMachine::distinct()->pluck('Party_Name');
         return view('reports.vendorWiseCollection', compact('vendorLists', 'results', 'request'));

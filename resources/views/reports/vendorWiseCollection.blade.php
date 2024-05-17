@@ -42,6 +42,7 @@
                                         <th>SR.NO</th>
                                         <th>Vendor Name</th>
                                         <th>Date & Time </th>
+                                        <th>Vehicle Type</th>
                                         <th>Vehicle No</th>
                                         <th>Gross Weight</th>
                                         <th>Tare Weight</th>
@@ -55,6 +56,7 @@
                                             <td>{{ $index + 1 }}</td>
                                             <td>{{ $result->Party_Name }}</td>
                                             <td>{{ \Carbon\Carbon::parse($result->EntryDate)->format('Y-m-d h:i:s A') }}</td>
+                                            <td>{{ $result->Field1 }}</td>
                                             <td>{{ $result->Vehicle_No }}</td>
                                             <td>{{ $result->GrossWt / 1000 }} / Tons</td>
                                             <td>{{ $result->TareWt / 1000}} / Tons</td>
