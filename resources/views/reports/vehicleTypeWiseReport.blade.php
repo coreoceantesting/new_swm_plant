@@ -51,7 +51,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                        $totalGrossWeight = 0;
+                                        $totalTareWeight = 0;
+                                        $totalNetWeight = 0;
+                                    @endphp
                                     @foreach ($results as $index => $result)
+                                        @php
+                                            $totalGrossWeight += $result->GrossWt;
+                                            $totalTareWeight += $result->TareWt;
+                                            $totalNetWeight += $result->NetWt;
+                                        @endphp
                                         <tr>
                                             <td>{{ $index + 1 }}</td>
                                             <td>{{ $result->Party_Name }}</td>
@@ -87,6 +97,17 @@
                                         </tr>
 
                                     @endforeach
+
+                                    <tr>
+                                        <td><strong>Total</strong></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><strong>{{ number_format($totalGrossWeight / 1000, 2) }} T</strong></td>
+                                        <td><strong>{{ number_format($totalTareWeight / 1000, 2) }} T</strong></td>
+                                        <td><strong>{{ number_format($totalNetWeight / 1000, 2) }} T</strong></td>
+                                    </tr>
                             </table>
                         </div>
                     </div>
