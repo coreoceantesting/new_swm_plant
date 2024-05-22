@@ -69,9 +69,9 @@
                                             <td>{{ \Carbon\Carbon::parse($result->EntryDate)->format('d-m-Y h:i:s A') }}</td>
                                             <td>{{ $result->Field1 }}</td>
                                             <td>{{ $result->Vehicle_No }}</td>
-                                            <td>{{ number_format($result->GrossWt / 1000, 2) }} / Tons</td>
-                                            <td>{{ number_format($result->TareWt / 1000, 2) }} / Tons</td>
-                                            <td>{{ number_format($result->NetWt / 1000, 2) }} / Tons</td>
+                                            <td>{{ number_format($result->GrossWt / 1000, 2) }} / T</td>
+                                            <td>{{ number_format($result->TareWt / 1000, 2) }} / T</td>
+                                            <td>{{ number_format($result->NetWt / 1000, 2) }} / T</td>
                                             <td>
                                                 <button type="button" class="btn btn-primary open-modal" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $result->id }}" data-id="{{ $result->id }}">
                                                   View

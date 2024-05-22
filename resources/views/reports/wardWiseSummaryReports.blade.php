@@ -50,9 +50,9 @@
                                     @foreach ($results as $result)
                                         <tr>
                                             <td>{{ $result->Field2 }}</td>
-                                            <td>{{ number_format($result->total_gross_weight / 1000, 2) }} / Tons</td>
-                                            <td>{{ number_format($result->total_tare_weight / 1000, 2) }} / Tons</td>
-                                            <td>{{ number_format($result->total_net_weight / 1000, 2) }} / Tons</td>
+                                            <td>{{ number_format($result->total_gross_weight / 1000, 2) }} / T</td>
+                                            <td>{{ number_format($result->total_tare_weight / 1000, 2) }} / T</td>
+                                            <td>{{ number_format($result->total_net_weight / 1000, 2) }} / T</td>
                                             <td>{{ $result->total_vehicle_round }}</td>
                                         </tr>
                                     @endforeach

@@ -322,9 +322,12 @@
                     @foreach($latestVehicle as $list)
                         <div class="card">
                             <div class="card-body">
-                                <p class="card-text"><strong>Vehicle No: </strong> {{$list->Vehicle_No}}</p>
+                                <p class="card-text"><strong>Vehicle Number: </strong> {{$list->Vehicle_No}}</p>
                                 <p class="card-text"><strong>Net Collection: </strong> {{ number_format($list->NetWt / 1000, 2) }} Tons</p>
-                                <p class="card-text"><strong>Date & Time: </strong> {{\Carbon\Carbon::parse($list->Net_Date)->format('Y-m-d h:i:s A')}}</p>
+                                <p class="card-text"><strong>Date & Time: </strong> {{\Carbon\Carbon::parse($list->Net_Date)->format('d-m-Y h:i:s A')}}</p>
+                                <p class="card-text"><strong>Vendor Name: </strong> {{$list->Party_Name}}</p>
+                                <p class="card-text"><strong>Ward Name: </strong> {{$list->Field2}}</p>
+                                <p class="card-text"><strong>Vehicle Type: </strong> {{$list->Field1}}</p>
                             </div>
                         </div>
                     @endforeach
