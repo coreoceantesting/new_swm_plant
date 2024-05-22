@@ -442,29 +442,29 @@
                             <thead>
                                 <tr>
                                     <th>Ward Name</th>
-                                    <th colspan="4">Today</th>
-                                    <th colspan="4">Current Month</th>
-                                    <th colspan="4">Previous Month</th>
-                                    <th colspan="4">Current Year</th>
+                                    <th colspan="4" style="background-color: lightgoldenrodyellow">Today</th>
+                                    <th colspan="4" style="background-color: lightgreen">Current Month</th>
+                                    <th colspan="4" style="background-color: lightblue">Previous Month</th>
+                                    <th colspan="4" style="background-color:burlywood">Current Year</th>
                                 </tr>
                                 <tr>
                                     <th></th>
-                                    <th>Gross Weight (Tons)</th>
-                                    <th>Tare Weight (Tons)</th>
-                                    <th>Net Weight (Tons)</th>
-                                    <th>Rounds</th>
-                                    <th>Gross Weight (Tons)</th>
-                                    <th>Tare Weight (Tons)</th>
-                                    <th>Net Weight (Tons)</th>
-                                    <th>Rounds</th>
-                                    <th>Gross Weight (Tons)</th>
-                                    <th>Tare Weight (Tons)</th>
-                                    <th>Net Weight (Tons)</th>
-                                    <th>Rounds</th>
-                                    <th>Gross Weight (Tons)</th>
-                                    <th>Tare Weight (Tons)</th>
-                                    <th>Net Weight (Tons)</th>
-                                    <th>Rounds</th>
+                                    <th style="background-color: lightgoldenrodyellow">Gross Weight (Tons)</th>
+                                    <th style="background-color:lightgoldenrodyellow">Tare Weight (Tons)</th>
+                                    <th style="background-color: lightgoldenrodyellow">Net Weight (Tons)</th>
+                                    <th style="background-color: lightgoldenrodyellow">Rounds</th>
+                                    <th style="background-color:lightgreen">Gross Weight (Tons)</th>
+                                    <th style="background-color: lightgreen">Tare Weight (Tons)</th>
+                                    <th style="background-color: lightgreen">Net Weight (Tons)</th>
+                                    <th style="background-color: lightgreen">Rounds</th>
+                                    <th style="background-color:lightblue">Gross Weight (Tons)</th>
+                                    <th style="background-color: lightblue">Tare Weight (Tons)</th>
+                                    <th style="background-color: lightblue">Net Weight (Tons)</th>
+                                    <th style="background-color: lightblue">Rounds</th>
+                                    <th style="background-color:burlywood">Gross Weight (Tons)</th>
+                                    <th style="background-color:burlywood">Tare Weight (Tons)</th>
+                                    <th style="background-color:burlywood">Net Weight (Tons)</th>
+                                    <th style="background-color:burlywood">Rounds</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -474,11 +474,26 @@
                                         @foreach(['Today', 'Current Month', 'Previous Month', 'Current Year'] as $period)
                                             @php
                                                 $details = $wardWiseCollectionDetails[$location->Field2][$period];
+                                                $style = '';
+                                                switch ($period) {
+                                                    case 'Today':
+                                                        $style = 'background-color: lightgoldenrodyellow';
+                                                        break;
+                                                    case 'Current Month':
+                                                        $style = 'background-color: lightgreen';
+                                                        break;
+                                                    case 'Previous Month':
+                                                        $style = 'background-color: lightblue';
+                                                        break;
+                                                    case 'Current Year':
+                                                        $style = 'background-color: burlywood';
+                                                        break;
+                                                }
                                             @endphp
-                                            <td>{{ $details->gross_weight ? round($details->gross_weight / 1000, 2) : 0 }}</td>
-                                            <td>{{ $details->tare_weight ? round($details->tare_weight / 1000, 2) : 0 }}</td>
-                                            <td>{{ $details->net_weight ? round($details->net_weight / 1000, 2) : 0 }}</td>
-                                            <td>{{ $details->rounds ? $details->rounds : 0 }}</td>
+                                            <td style="{{ $style }}">{{ $details->gross_weight ? round($details->gross_weight / 1000, 2) : 0 }}</td>
+                                            <td style="{{ $style }}">{{ $details->tare_weight ? round($details->tare_weight / 1000, 2) : 0 }}</td>
+                                            <td style="{{ $style }}">{{ $details->net_weight ? round($details->net_weight / 1000, 2) : 0 }}</td>
+                                            <td style="{{ $style }}">{{ $details->rounds ? $details->rounds : 0 }}</td>
                                         @endforeach
                                     </tr>
                                 @endforeach
@@ -510,29 +525,29 @@
                             <thead>
                                 <tr>
                                     <th>Vendor Name</th>
-                                    <th colspan="4">Today</th>
-                                    <th colspan="4">Current Month</th>
-                                    <th colspan="4">Previous Month</th>
-                                    <th colspan="4">Current Year</th>
+                                    <th colspan="4" style="background-color: lightgoldenrodyellow">Today</th>
+                                    <th colspan="4" style="background-color: lightgreen">Current Month</th>
+                                    <th colspan="4" style="background-color: lightblue">Previous Month</th>
+                                    <th colspan="4" style="background-color:burlywood">Current Year</th>
                                 </tr>
                                 <tr>
                                     <th></th>
-                                    <th>Gross Weight (Tons)</th>
-                                    <th>Tare Weight (Tons)</th>
-                                    <th>Net Weight (Tons)</th>
-                                    <th>Rounds</th>
-                                    <th>Gross Weight (Tons)</th>
-                                    <th>Tare Weight (Tons)</th>
-                                    <th>Net Weight (Tons)</th>
-                                    <th>Rounds</th>
-                                    <th>Gross Weight (Tons)</th>
-                                    <th>Tare Weight (Tons)</th>
-                                    <th>Net Weight (Tons)</th>
-                                    <th>Rounds</th>
-                                    <th>Gross Weight (Tons)</th>
-                                    <th>Tare Weight (Tons)</th>
-                                    <th>Net Weight (Tons)</th>
-                                    <th>Rounds</th>
+                                    <th style="background-color: lightgoldenrodyellow">Gross Weight (Tons)</th>
+                                    <th style="background-color: lightgoldenrodyellow">Tare Weight (Tons)</th>
+                                    <th style="background-color: lightgoldenrodyellow">Net Weight (Tons)</th>
+                                    <th style="background-color: lightgoldenrodyellow">Rounds</th>
+                                    <th style="background-color: lightgreen">Gross Weight (Tons)</th>
+                                    <th style="background-color: lightgreen">Tare Weight (Tons)</th>
+                                    <th style="background-color: lightgreen">Net Weight (Tons)</th>
+                                    <th style="background-color: lightgreen">Rounds</th>
+                                    <th style="background-color: lightblue">Gross Weight (Tons)</th>
+                                    <th style="background-color: lightblue">Tare Weight (Tons)</th>
+                                    <th style="background-color: lightblue">Net Weight (Tons)</th>
+                                    <th style="background-color: lightblue">Rounds</th>
+                                    <th style="background-color:burlywood">Gross Weight (Tons)</th>
+                                    <th style="background-color:burlywood">Tare Weight (Tons)</th>
+                                    <th style="background-color:burlywood">Net Weight (Tons)</th>
+                                    <th style="background-color:burlywood">Rounds</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -542,11 +557,26 @@
                                         @foreach(['Today', 'Current Month', 'Previous Month', 'Current Year'] as $period)
                                             @php
                                                 $details = $collectionDetails[$vendor->Party_Name][$period];
+                                                $style = '';
+                                                switch ($period) {
+                                                    case 'Today':
+                                                        $style = 'background-color: lightgoldenrodyellow';
+                                                        break;
+                                                    case 'Current Month':
+                                                        $style = 'background-color: lightgreen';
+                                                        break;
+                                                    case 'Previous Month':
+                                                        $style = 'background-color: lightblue';
+                                                        break;
+                                                    case 'Current Year':
+                                                        $style = 'background-color: burlywood';
+                                                        break;
+                                                }
                                             @endphp
-                                            <td>{{ $details->gross_weight ? round($details->gross_weight / 1000, 2) : 0 }}</td>
-                                            <td>{{ $details->tare_weight ? round($details->tare_weight / 1000, 2) : 0 }}</td>
-                                            <td>{{ $details->net_weight ? round($details->net_weight / 1000, 2) : 0 }}</td>
-                                            <td>{{ $details->rounds ? $details->rounds : 0 }}</td>
+                                            <td style="{{ $style }}">{{ $details->gross_weight ? round($details->gross_weight / 1000, 2) : 0 }}</td>
+                                            <td style="{{ $style }}">{{ $details->tare_weight ? round($details->tare_weight / 1000, 2) : 0 }}</td>
+                                            <td style="{{ $style }}">{{ $details->net_weight ? round($details->net_weight / 1000, 2) : 0 }}</td>
+                                            <td style="{{ $style }}">{{ $details->rounds ? $details->rounds : 0 }}</td>
                                         @endforeach
                                     </tr>
                                 @endforeach
