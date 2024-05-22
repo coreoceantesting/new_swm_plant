@@ -77,6 +77,9 @@ Route::middleware(['auth','PreventBackHistory'])->group(function()
     Route::get('/daily-collection', [App\Http\Controllers\Admin\DashboardController::class, 'getDailyCollectionData'])->name('daily.collection');
     Route::get('/getImages/{id}', [App\Http\Controllers\ReportController::class, 'getImages'])->name('getImages');
 
+    // generate PDF
+    Route::get('/generate-pdf', [App\Http\Controllers\ExportController::class, 'generatePDF']);
+
 
 });
 
