@@ -98,10 +98,13 @@ class ReportController extends Controller
             });
         }
 
+        $totalGrossWeight = $query->sum('GrossWt');
+        $totalTareWeight = $query->sum('TareWt');
+        $totalNetWeight = $query->sum('NetWt');
         $results = $query->select('id','Field1','Party_Name','EntryDate', 'Vehicle_No', 'GrossWt', 'TareWt','NetWt')->orderBy('id', 'desc')->get();
 
         $vehicleTypeLists = WeightMachine::whereNotNull('Field1')->distinct()->pluck('Field1');
-        return view('reports.vehicleTypeWiseReport', compact('results', 'vehicleTypeLists', 'request'));
+        return view('reports.vehicleTypeWiseReport', compact('results', 'vehicleTypeLists', 'request', 'totalGrossWeight', 'totalTareWeight', 'totalNetWeight'));
     }
 
     public function vehicleroundsreport(Request $request)
