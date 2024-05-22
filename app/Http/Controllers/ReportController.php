@@ -27,11 +27,14 @@ class ReportController extends Controller
             });
         }
 
+        $totalGrossWeight = $query->sum('GrossWt');
+        $totalTareWeight = $query->sum('TareWt');
+        $totalNetWeight = $query->sum('NetWt');
         $results = $query->select('id','Party_Name','EntryDate', 'Vehicle_No', 'GrossWt', 'TareWt','NetWt', 'Field1', 'Field2')->orderBy('id', 'desc')->get();
 
         $vendorLists = WeightMachine::distinct()->pluck('Party_Name');
         $locationLists = WeightMachine::whereNotNull('Field2')->distinct()->pluck('Field2');
-        return view('reports.vendorWiseCollection', compact('vendorLists', 'results', 'request', 'locationLists'));
+        return view('reports.vendorWiseCollection', compact('vendorLists', 'results', 'request', 'locationLists', 'totalGrossWeight', 'totalTareWeight', 'totalNetWeight'));
     }
 
     public function summaryReport(Request $request)
