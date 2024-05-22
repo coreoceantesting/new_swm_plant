@@ -94,8 +94,12 @@
                                         <a class="fw-medium text-muted mb-0">
                                            <b> Yearly Net Collection</b>
                                         </a>
+                                        @php
+                                            $formattedYearlyNetCollectionSum = number_format($yearlyNetCollectionSum / 1000, 2);
+                                            $unformattedYearlyNetCollectionSum = $yearlyNetCollectionSum / 1000;
+                                        @endphp
                                         <h2 class="mt-4 ff-secondary fw-semibold">
-                                            <span class="counter-value text-primary" data-target="{{ $yearlyNetCollectionSum / 1000 }}">{{ number_format($yearlyNetCollectionSum / 1000, 2) }}</span> <small class="text-primary">Tons</small>
+                                            <span class="counter-value text-primary" data-target="{{ formattedYearlyNetCollectionSum }}">{{ $formattedYearlyNetCollectionSum }}</span> <small class="text-primary">Tons</small>
                                         </h2>
                                         <p class="mb-0 text-muted" style="display: none">
                                             <span class="badge bg-light text-danger mb-0">
