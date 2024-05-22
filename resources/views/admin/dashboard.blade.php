@@ -99,7 +99,7 @@
                                             $unformattedYearlyNetCollectionSum = $yearlyNetCollectionSum / 1000;
                                         @endphp
                                         <h2 class="mt-4 ff-secondary fw-semibold">
-                                            <span class="counter-value text-primary" data-target="{{ formattedYearlyNetCollectionSum }}">{{ $formattedYearlyNetCollectionSum }}</span> <small class="text-primary">Tons</small>
+                                            <span class="counter-value text-primary" data-target="{{ $formattedYearlyNetCollectionSum }}">{{ $formattedYearlyNetCollectionSum }}</span> <small class="text-primary">Tons</small>
                                         </h2>
                                         <p class="mb-0 text-muted" style="display: none">
                                             <span class="badge bg-light text-danger mb-0">
