@@ -98,19 +98,22 @@
                                         </tr>
 
                                     @endforeach
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td><strong>{{ number_format($totalGrossWeight / 1000, 2) }} T</strong></td>
-                                        <td><strong>{{ number_format($totalTareWeight / 1000, 2) }} T</strong></td>
-                                        <td><strong>{{ number_format($totalNetWeight / 1000, 2) }} T</strong></td>
-                                    </tr>
                                 </tbody>
                             </table>
+                            <!-- Total row outside tbody -->
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="6" class="text-center"><strong>Total</strong></td>
+                                            <td><strong>{{ number_format($totalGrossWeight / 1000, 2) }} T</strong></td>
+                                            <td><strong>{{ number_format($totalTareWeight / 1000, 2) }} T</strong></td>
+                                            <td><strong>{{ number_format($totalNetWeight / 1000, 2) }} T</strong></td>
+                                            <td></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
