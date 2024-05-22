@@ -36,13 +36,24 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                        $totalRounds = 0 ;
+                                    @endphp
                                     @foreach ($results as $index => $result)
+                                    @php
+                                        $totalRounds += $result->total_vehicle_round ;
+                                    @endphp
                                         <tr>
                                             <td>{{ $index + 1 }}</td>
                                             <td>{{ $result->Vehicle_No }}</td>
                                             <td>{{ $result->total_vehicle_round }}</td>
                                         </tr>
                                     @endforeach
+                                    <tr>
+                                        <td><strong>Total</strong></td>
+                                        <td></td>
+                                        <td><strong>{{ $totalRounds }}</strong></td>
+                                    </tr>
                             </table>
                         </div>
                     </div>
