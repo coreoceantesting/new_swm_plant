@@ -99,8 +99,8 @@
                                            <b> Yearly Net Collection</b>
                                         </a>
                                         @php
-                                            $formattedYearlyNetCollectionSum = number_format($yearlyNetCollectionSum / 1000, 2);
-                                            $unformattedYearlyNetCollectionSum = $yearlyNetCollectionSum / 1000;
+                                            $formattedYearlyNetCollectionSum = $yearlyNetCollectionSum / 1000 ;
+                                            $unformattedYearlyNetCollectionSum = number_format($yearlyNetCollectionSum / 1000, 2);
                                         @endphp
                                         <h2 class="mt-4 ff-secondary fw-semibold">
                                             <span class="counter-value text-primary" data-target="{{ $unformattedYearlyNetCollectionSum }}">{{ $formattedYearlyNetCollectionSum }}</span> <small class="text-primary">Tons</small>
