@@ -450,17 +450,17 @@
                             <thead>
                                 <tr>
                                     <th>Ward Name</th>
-                                    <th colspan="4" style="background-color: lightgoldenrodyellow">Today</th>
+                                    <th colspan="4" style="background-color: burlywood">Today</th>
                                     <th colspan="4" style="background-color: lightgreen">Current Month</th>
                                     <th colspan="4" style="background-color: lightblue">Previous Month</th>
-                                    <th colspan="4" style="background-color:burlywood">Current Year</th>
+                                    <th colspan="4" style="background-color:lightgoldenrodyellow">Current Year</th>
                                 </tr>
                                 <tr>
                                     <th></th>
-                                    <th style="background-color: lightgoldenrodyellow">Gross Weight (Tons)</th>
-                                    <th style="background-color:lightgoldenrodyellow">Tare Weight (Tons)</th>
-                                    <th style="background-color: lightgoldenrodyellow">Net Weight (Tons)</th>
-                                    <th style="background-color: lightgoldenrodyellow">Rounds</th>
+                                    <th style="background-color: burlywood">Gross Weight (Tons)</th>
+                                    <th style="background-color:burlywood">Tare Weight (Tons)</th>
+                                    <th style="background-color: burlywood">Net Weight (Tons)</th>
+                                    <th style="background-color: burlywood">Rounds</th>
                                     <th style="background-color:lightgreen">Gross Weight (Tons)</th>
                                     <th style="background-color: lightgreen">Tare Weight (Tons)</th>
                                     <th style="background-color: lightgreen">Net Weight (Tons)</th>
@@ -469,10 +469,10 @@
                                     <th style="background-color: lightblue">Tare Weight (Tons)</th>
                                     <th style="background-color: lightblue">Net Weight (Tons)</th>
                                     <th style="background-color: lightblue">Rounds</th>
-                                    <th style="background-color:burlywood">Gross Weight (Tons)</th>
-                                    <th style="background-color:burlywood">Tare Weight (Tons)</th>
-                                    <th style="background-color:burlywood">Net Weight (Tons)</th>
-                                    <th style="background-color:burlywood">Rounds</th>
+                                    <th style="background-color:lightgoldenrodyellow">Gross Weight (Tons)</th>
+                                    <th style="background-color:lightgoldenrodyellow">Tare Weight (Tons)</th>
+                                    <th style="background-color:lightgoldenrodyellow">Net Weight (Tons)</th>
+                                    <th style="background-color:lightgoldenrodyellow">Rounds</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -533,17 +533,17 @@
                             <thead>
                                 <tr>
                                     <th>Vendor Name</th>
-                                    <th colspan="4" style="background-color: lightgoldenrodyellow">Today</th>
+                                    <th colspan="4" style="background-color: burlywood">Today</th>
                                     <th colspan="4" style="background-color: lightgreen">Current Month</th>
                                     <th colspan="4" style="background-color: lightblue">Previous Month</th>
-                                    <th colspan="4" style="background-color:burlywood">Current Year</th>
+                                    <th colspan="4" style="background-color:lightgoldenrodyellow">Current Year</th>
                                 </tr>
                                 <tr>
                                     <th></th>
-                                    <th style="background-color: lightgoldenrodyellow">Gross Weight (Tons)</th>
-                                    <th style="background-color: lightgoldenrodyellow">Tare Weight (Tons)</th>
-                                    <th style="background-color: lightgoldenrodyellow">Net Weight (Tons)</th>
-                                    <th style="background-color: lightgoldenrodyellow">Rounds</th>
+                                    <th style="background-color: burlywood">Gross Weight (Tons)</th>
+                                    <th style="background-color: burlywood">Tare Weight (Tons)</th>
+                                    <th style="background-color: burlywood">Net Weight (Tons)</th>
+                                    <th style="background-color: burlywood">Rounds</th>
                                     <th style="background-color: lightgreen">Gross Weight (Tons)</th>
                                     <th style="background-color: lightgreen">Tare Weight (Tons)</th>
                                     <th style="background-color: lightgreen">Net Weight (Tons)</th>
@@ -552,10 +552,10 @@
                                     <th style="background-color: lightblue">Tare Weight (Tons)</th>
                                     <th style="background-color: lightblue">Net Weight (Tons)</th>
                                     <th style="background-color: lightblue">Rounds</th>
-                                    <th style="background-color:burlywood">Gross Weight (Tons)</th>
-                                    <th style="background-color:burlywood">Tare Weight (Tons)</th>
-                                    <th style="background-color:burlywood">Net Weight (Tons)</th>
-                                    <th style="background-color:burlywood">Rounds</th>
+                                    <th style="background-color:lightgoldenrodyellow">Gross Weight (Tons)</th>
+                                    <th style="background-color:lightgoldenrodyellow">Tare Weight (Tons)</th>
+                                    <th style="background-color:lightgoldenrodyellow">Net Weight (Tons)</th>
+                                    <th style="background-color:lightgoldenrodyellow">Rounds</th>
                                 </tr>
                             </thead>
                             <tbody>
