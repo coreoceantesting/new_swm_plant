@@ -99,15 +99,16 @@
 
                                     @endforeach
                                     <tr>
-                                        <td class="text-center"><strong>Total</strong></td>
-                                        <td class="text-center"><strong></strong></td>
-                                        <td class="text-center"><strong></strong></td>
-                                        <td class="text-center"><strong></strong></td>
-                                        <td class="text-center"><strong></strong></td>
-                                        <td class="text-center"><strong></strong></td>
+                                        <td><strong>Total</strong></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                         <td><strong>{{ number_format($totalGrossWeight / 1000, 2) }} T</strong></td>
                                         <td><strong>{{ number_format($totalTareWeight / 1000, 2) }} T</strong></td>
                                         <td><strong>{{ number_format($totalNetWeight / 1000, 2) }} T</strong></td>
+                                        <td></td>
                                     </tr>
                                 </tbody>
                             </table>
