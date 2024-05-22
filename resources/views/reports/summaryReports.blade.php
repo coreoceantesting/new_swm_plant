@@ -53,7 +53,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                        $totalGrossWeight = 0;
+                                        $totalTareWeight = 0;
+                                        $totalNetWeight = 0;
+                                        $totalRounds = 0 ;
+                                    @endphp
                                     @foreach ($results as $result)
+                                    @php
+                                        $totalGrossWeight += $result->total_gross_weight;
+                                        $totalTareWeight += $result->total_tare_weight;
+                                        $totalNetWeight += $result->total_net_weight;
+                                        $totalRounds += $result->total_vehicle_round;
+                                    @endphp
                                         <tr>
                                             <td>{{ $result->Party_Name }}</td>
                                             {{-- @if ($request->fromdate)
@@ -68,6 +80,14 @@
                                             <td>{{ $result->total_vehicle_round }}</td>
                                         </tr>
                                     @endforeach
+                                    <tr>
+                                        <td><strong>Total</strong></td>
+                                        <td><strong>{{ number_format($totalGrossWeight / 1000, 2) }} T</strong></td>
+                                        <td><strong>{{ number_format($totalTareWeight / 1000, 2) }} T</strong></td>
+                                        <td><strong>{{ number_format($totalNetWeight / 1000, 2) }} T</strong></td>
+                                        <td><strong>{{ $totalRounds }}</strong></td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                     </div>
