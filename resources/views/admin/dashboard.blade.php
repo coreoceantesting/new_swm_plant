@@ -485,7 +485,7 @@
                                                 $style = '';
                                                 switch ($period) {
                                                     case 'Today':
-                                                        $style = 'background-color: lightgoldenrodyellow';
+                                                        $style = 'background-color: burlywood';
                                                         break;
                                                     case 'Current Month':
                                                         $style = 'background-color: lightgreen';
@@ -494,7 +494,7 @@
                                                         $style = 'background-color: lightblue';
                                                         break;
                                                     case 'Current Year':
-                                                        $style = 'background-color: burlywood';
+                                                        $style = 'background-color: lightgoldenrodyellow';
                                                         break;
                                                 }
                                             @endphp
@@ -568,7 +568,7 @@
                                                 $style = '';
                                                 switch ($period) {
                                                     case 'Today':
-                                                        $style = 'background-color: lightgoldenrodyellow';
+                                                        $style = 'background-color: burlywood';
                                                         break;
                                                     case 'Current Month':
                                                         $style = 'background-color: lightgreen';
@@ -577,7 +577,7 @@
                                                         $style = 'background-color: lightblue';
                                                         break;
                                                     case 'Current Year':
-                                                        $style = 'background-color: burlywood';
+                                                        $style = 'background-color: lightgoldenrodyellow';
                                                         break;
                                                 }
                                             @endphp
