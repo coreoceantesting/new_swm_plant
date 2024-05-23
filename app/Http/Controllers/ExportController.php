@@ -37,9 +37,9 @@ class ExportController extends Controller
         $data = [
             'title' => 'VendorWise Collection Report',
             'Name' => 'Vendor',
-            'reportdatetime' => date('d-m-Y H:i:s A'),
-            'fromdate' => date($request->fromdate, 'd-m-Y'),
-            'todate' => date($request->todate, 'd-m-Y'),
+            'reportdatetime' => \Carbon\Carbon::parse(now())->format('d-m-Y H:i:s A'),
+            'fromdate' => \Carbon\Carbon::parse($request->fromdate)->format('d-m-Y'),
+            'todate' => \Carbon\Carbon::parse($request->todate)->format('d-m-Y'),
             'vendorName' => $request->vendorName,
             'results' => $results,
             'totalGrossWeight' => $totalGrossWeight,
@@ -73,9 +73,9 @@ class ExportController extends Controller
         $data = [
             'title' => 'Vehicle TypeWise Report',
             'Name' => 'Vehicle Type',
-            'reportdatetime' => date('d-m-Y H:i:s A'),
-            'fromdate' => date($request->fromdate, 'd-m-Y'),
-            'todate' => date($request->todate, 'd-m-Y'),
+            'reportdatetime' => \Carbon\Carbon::parse(now())->format('d-m-Y H:i:s A'),
+            'fromdate' => \Carbon\Carbon::parse($request->fromdate)->format('d-m-Y'),
+            'todate' => \Carbon\Carbon::parse($request->todate)->format('d-m-Y'),
             'vehicleType' => $request->vehicleType,
             'results' => $results,
             'totalGrossWeight' => $totalGrossWeight,
@@ -109,7 +109,7 @@ class ExportController extends Controller
         $data = [
             'title' => 'Vendor Wise Summary Report',
             'Name' => 'Vendor',
-            'reportdatetime' => date('d-m-Y H:i:s A'),
+            'reportdatetime' => \Carbon\Carbon::parse(now())->format('d-m-Y H:i:s A'),
             'fromdate' => \Carbon\Carbon::parse($request->fromdate)->format('d-m-Y'),
             'todate' => \Carbon\Carbon::parse($request->todate)->format('d-m-Y'),
             'vendorName' => $request->vendorName,
@@ -117,6 +117,39 @@ class ExportController extends Controller
         ];
         $pdf = PDF::loadView('reports.exports.vendorWiseSummaryPdf', $data)->setPaper('a4', 'landscape');
         return $pdf->download('VendorWiseSummaryReport.pdf');
+    }
+
+    public function wardWiseSummaryPDF(Request $request)
+    {
+        $query = WeightMachine::query();
+
+        if (!empty($request->locationName)) {
+            $query->where('Field2', $request->locationName);
+        }
+
+        if (!empty($request->fromdate) && !empty($request->todate)) {
+            $query->where(function($q) use ($request) {
+                $q->whereBetween('EntryDate', [$request->fromdate, $request->todate])
+                  ->orWhereDate('EntryDate', $request->fromdate)
+                  ->orWhereDate('EntryDate', $request->todate);
+            });
+        }
+
+        $results = $query->selectRaw('Field2, SUM(GrossWt) as total_gross_weight, SUM(TareWt) as total_tare_weight, SUM(NetWt) as total_net_weight, COUNT(Party_Name) as total_vehicle_round')
+                        ->groupBy('Field2')
+                        ->get();
+
+        $data = [
+            'title' => 'Ward Wise Summary Report',
+            'Name' => 'Ward',
+            'reportdatetime' => \Carbon\Carbon::parse(now())->format('d-m-Y H:i:s A'),
+            'fromdate' => \Carbon\Carbon::parse($request->fromdate)->format('d-m-Y'),
+            'todate' => \Carbon\Carbon::parse($request->todate)->format('d-m-Y'),
+            'locationName' => $request->locationName,
+            'results' => $results,
+        ];
+        $pdf = PDF::loadView('reports.exports.wardWiseSummaryPdf', $data)->setPaper('a4', 'landscape');
+        return $pdf->download('WardWiseSummaryReport.pdf');
     }
 
 }
