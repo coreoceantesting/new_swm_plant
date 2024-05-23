@@ -49,8 +49,8 @@
             <td style="width: 70%; text-align: center;">
                 <!-- Company Name and Additional Info -->
                 <h1 style="margin-bottom:-10px;"><strong>Thane Municipal Corporation</strong></h1>
-                <h2 style="margin-bottom:-10px;"><strong>Diager Waste Handling</strong></h2>
-                <h3><strong>VendorWise Collection Report</strong></h3>
+                <h2 style="margin-bottom:-8px;"><strong>Diager Waste Handling</strong></h2>
+                <h3><strong>{{ $title }}</strong></h3>
             </td>
             <td style="width: 20%;">
                 <!-- Any content you want on the right side -->
@@ -62,14 +62,14 @@
     <div class="content">
         <table style="width: 100%;">
             <tr>
-                <td style="padding:10px;border:none">Vendor Name:- Vendor Name</td>
+                <td style="padding:10px;border:none">{{ $Name }} Name:- {{ $vendorName }}</td>
             </tr>
             <tr>
-                <td style="padding:10px;border:none">Report Print:- {{ $date }}</td>
+                <td style="padding:10px;border:none">Report Print:- {{ $reportdatetime }}</td>
             </tr>
             <tr>
-                <td style="padding:10px;border:none">From Date: {{ $date }}</td>
-                <td style="padding:10px;border:none">To Date: {{ $date }}</td>
+                <td style="padding:10px;border:none">From Date: {{ $fromdate }}</td>
+                <td style="padding:10px;border:none">To Date: {{ $todate }}</td>
             </tr>
         </table>
         <br>
@@ -88,25 +88,27 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>NA</td>
-                    <td>NA</td>
-                    <td>NA</td>
-                    <td>NA</td>
-                    <td>NA</td>
-                    <td>NA</td>
-                    <td>NA</td>
-                    <td>NA</td>
-                </tr>
+                @foreach ($results as $index => $result)
+                    <tr>
+                        <td>{{ \Carbon\Carbon::parse($result->EntryDate)->format('d-m-Y h:i:s A') }}</td>
+                        <td>{{ $result->Vehicle_No }}</td>
+                        <td>{{ $result->Field1 }}</td>
+                        <td>{{ $result->Field2 }}</td>
+                        <td>NA</td>
+                        <td>{{ number_format($result->GrossWt / 1000, 2) }} T</td>
+                        <td>{{ number_format($result->TareWt / 1000, 2) }} T</td>
+                        <td>{{ number_format($result->NetWt / 1000, 2) }} T</td>
+                    </tr>
+                @endforeach
                 <tr>
                     <td><strong>Total</strong></td>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td><strong>NA</strong></td>
-                    <td><strong>NA</strong></td>
-                    <td><strong>NA</strong></td>
+                    <td><strong>{{ number_format($totalGrossWeight / 1000, 2) }} T</strong></td>
+                    <td><strong>{{ number_format($totalTareWeight / 1000, 2) }} T</strong></td>
+                    <td><strong>{{ number_format($totalNetWeight / 1000, 2) }} T</strong></td>
                 </tr>
             </tbody>
         </table>

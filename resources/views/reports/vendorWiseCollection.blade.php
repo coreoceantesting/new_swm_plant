@@ -7,8 +7,9 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <form class="theme-form" name="addForm" id="addForm" enctype="multipart/form-data" onsubmit="return validateForm()">
+                        <form class="theme-form" action="{{ route('vendorWiseReport') }}" name="addForm" id="addForm" enctype="multipart/form-data" onsubmit="return validateForm()">
                             @csrf
+                            <input type="hidden" name="action" value="filter">
                             <div class="row">
                                 <div class="col-sm-3">
                                     <label class="col-form-label" for="vendorName">Vendor Name <span class="text-danger">*</span></label>
@@ -37,8 +38,17 @@
                                     <input class="form-control" id="todate" name="todate" value="{{ $request->todate ?? '' }}" type="date">
                                 </div>
                                 <div class="col-sm-3">
-                                    <button type="submit" style="margin-top: 37px;" class="btn btn-primary" id="addSubmit">Submit</button>
-                                    <a style="margin-top: 37px;" href="{{route('vendorWiseReport')}}" class="btn btn-warning">Cancel</a>
+                                    <div class="row mt-2">
+                                        <div class="col-sm-4">
+                                            <button type="submit" class="btn btn-primary" id="addSubmit">Submit</button>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <a href="{{ route('vendorWiseReport') }}" class="btn btn-warning">Cancel</a>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <button type="button" class="btn btn-primary" id="pdfSubmit">Download PDF</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </form>
@@ -158,4 +168,12 @@
         return true;
     }
     </script>
+
+<script>
+    document.getElementById('pdfSubmit').addEventListener('click', function() {
+        document.getElementById('addForm').action = "{{ route('generatePDF') }}";
+        document.getElementById('addForm').submit();
+    });
+</script>
+
 
