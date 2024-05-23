@@ -2,6 +2,22 @@
     <x-slot name="title">Vehicle Type Wise Report</x-slot>
     <x-slot name="heading">Vehicle Type Wise Report</x-slot>
     {{-- <x-slot name="subheading">Test</x-slot> --}}
+    <style>
+        .dt-buttons {
+            float: right!important;
+        }
+        .dt-button {
+            background-color: #8c68cd!important;
+            border-color: #8c68cd!important;
+            color: white!important;
+            margin-left: 10px;
+        }
+        .dataTables_length, .dataTables_filter {
+        display: inline-block!important;
+        margin-right: 20px!important;
+    }
+    </style>
+
 
         <div class="row">
             <div class="col-lg-12">
@@ -45,7 +61,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="buttons-datatables" class="table table-bordered nowrap align-middle" style="width:100%">
+                            <table id="buttons-datatables-new" class="table table-bordered nowrap align-middle" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>SR.NO</th>
@@ -120,8 +136,24 @@
 </x-admin.layout>
 
 <script>
+    $(document).ready(function() {
+        var isAdmin = {{ auth()->user()->roles->pluck('name')[0] == 'Admin' ? 'true' : 'false' }};
+
+        var buttons = isAdmin ? ["excel"] : [];
+
+        new DataTable("#buttons-datatables-new", {
+            paging: true,
+            dom: "<'row'<'col-sm-6'l><'col-sm-6 text-right'fB>>" +
+         "<'row'<'col-sm-12'tr>>" +
+         "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+            buttons: buttons,
+        });
+    });
+</script>
+
+<script>
     $(document).ready(function () {
-        $('#buttons-datatables').on('click', '.open-modal', function () {
+        $('#buttons-datatables-new').on('click', '.open-modal', function () {
             var id = $(this).data('id');
             $.ajax({
                 url: '/getImages/' + id,
