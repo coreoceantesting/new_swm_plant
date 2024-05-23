@@ -7,7 +7,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <form class="theme-form" name="addForm" id="addForm" enctype="multipart/form-data" onsubmit="return validateForm()">
+                        <form class="theme-form" action="{{ route('summaryReport') }}" name="addForm" id="addForm" enctype="multipart/form-data" onsubmit="return validateForm()">
                             @csrf
                             <div class="row">
                                 <div class="col-sm-3">
@@ -28,8 +28,17 @@
                                     <input class="form-control" id="todate" name="todate" value="{{ $request->todate ?? '' }}" type="date">
                                 </div>
                                 <div class="col-sm-3">
-                                    <button type="submit" style="margin-top: 37px;" class="btn btn-primary" id="addSubmit">Submit</button>
-                                    <a style="margin-top: 37px;" href="{{route('summaryReport')}}" class="btn btn-warning">Cancel</a>
+                                    <div class="row" style="margin-top: 36px;">
+                                        <div class="col-sm-4">
+                                            <button type="submit" class="btn btn-primary" id="addSubmit">Submit</button>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <a href="{{ route('summaryReport') }}" class="btn btn-warning">Cancel</a>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <button type="button" title="Download Report" class="btn btn-primary" id="pdfSubmit"><i class="ri-file-pdf-2-line"></i></button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </form>
@@ -115,4 +124,11 @@
 
         return true;
     }
-    </script>
+</script>
+
+<script>
+    document.getElementById('pdfSubmit').addEventListener('click', function() {
+        document.getElementById('addForm').action = "{{ route('vendorWiseSummaryPDF') }}";
+        document.getElementById('addForm').submit();
+    });
+</script>

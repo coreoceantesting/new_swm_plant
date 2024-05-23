@@ -80,6 +80,7 @@ Route::middleware(['auth','PreventBackHistory'])->group(function()
     // generate PDF
     Route::get('/generate-pdf', [App\Http\Controllers\ExportController::class, 'generatePDF'])->name('vendorwiseCollectionPDF');
     Route::get('/vehicle-type-wise-pdf', [App\Http\Controllers\ExportController::class, 'vehicleTypeWisePDF'])->name('vehicleTypeWisePDF');
+    Route::get('/vendor-wise-summary-pdf', [App\Http\Controllers\ExportController::class, 'vendorWiseSummaryPDF'])->name('vendorWiseSummaryPDF');
 
 
 });

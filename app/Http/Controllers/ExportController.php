@@ -37,9 +37,9 @@ class ExportController extends Controller
         $data = [
             'title' => 'VendorWise Collection Report',
             'Name' => 'Vendor',
-            'reportdatetime' => date('Y-m-d H:i:s A'),
-            'fromdate' => $request->fromdate,
-            'todate' => $request->todate,
+            'reportdatetime' => date('d-m-Y H:i:s A'),
+            'fromdate' => date($request->fromdate, 'd-m-Y'),
+            'todate' => date($request->todate, 'd-m-Y'),
             'vendorName' => $request->vendorName,
             'results' => $results,
             'totalGrossWeight' => $totalGrossWeight,
@@ -73,9 +73,9 @@ class ExportController extends Controller
         $data = [
             'title' => 'Vehicle TypeWise Report',
             'Name' => 'Vehicle Type',
-            'reportdatetime' => date('Y-m-d H:i:s A'),
-            'fromdate' => $request->fromdate,
-            'todate' => $request->todate,
+            'reportdatetime' => date('d-m-Y H:i:s A'),
+            'fromdate' => date($request->fromdate, 'd-m-Y'),
+            'todate' => date($request->todate, 'd-m-Y'),
             'vehicleType' => $request->vehicleType,
             'results' => $results,
             'totalGrossWeight' => $totalGrossWeight,
@@ -85,4 +85,38 @@ class ExportController extends Controller
         $pdf = PDF::loadView('reports.exports.vehicleTypeWisepdf', $data)->setPaper('a4', 'landscape');
         return $pdf->download('VehicleTypeWiseReport.pdf');
     }
+
+    public function vendorWiseSummaryPDF(Request $request)
+    {
+        $query = WeightMachine::query();
+
+        if (!empty($request->vendorName)) {
+            $query->where('Party_Name', $request->vendorName);
+        }
+
+        if (!empty($request->fromdate) && !empty($request->todate)) {
+            $query->where(function($q) use ($request) {
+                $q->whereBetween('EntryDate', [$request->fromdate, $request->todate])
+                  ->orWhereDate('EntryDate', $request->fromdate)
+                  ->orWhereDate('EntryDate', $request->todate);
+            });
+        }
+
+        $results = $query->selectRaw('Party_Name, SUM(GrossWt) as total_gross_weight, SUM(TareWt) as total_tare_weight, SUM(NetWt) as total_net_weight, COUNT(Party_Name) as total_vehicle_round')
+                        ->groupBy('Party_Name')
+                        ->get();
+
+        $data = [
+            'title' => 'Vendor Wise Summary Report',
+            'Name' => 'Vendor',
+            'reportdatetime' => date('d-m-Y H:i:s A'),
+            'fromdate' => \Carbon\Carbon::parse($request->fromdate)->format('d-m-Y'),
+            'todate' => \Carbon\Carbon::parse($request->todate)->format('d-m-Y'),
+            'vendorName' => $request->vendorName,
+            'results' => $results,
+        ];
+        $pdf = PDF::loadView('reports.exports.vendorWiseSummaryPdf', $data)->setPaper('a4', 'landscape');
+        return $pdf->download('VendorWiseSummaryReport.pdf');
+    }
+
 }
