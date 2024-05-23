@@ -12,7 +12,7 @@ class ExportController extends Controller
     {
         $results = [];
         $data = ['title' => 'Thane Municipal Corporation', 'date' => date('m/d/Y'), 'results' => $results];
-        $pdf = PDF::loadView('reports.exports.report', $data);
+        $pdf = PDF::loadView('reports.exports.report', $data)->setPaper('a4', 'landscape');
 
         return $pdf->stream('test.pdf');
     }
