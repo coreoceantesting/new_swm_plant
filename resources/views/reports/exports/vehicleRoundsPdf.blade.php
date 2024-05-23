@@ -66,9 +66,6 @@
                     Search By
                 </td>
                 <td style="padding:10px;border:none">
-                    Vendor Name: {{ $vendorName }}
-                </td>
-                <td style="padding:10px;border:none">
                     From Date: {{ $fromdate }}
                 </td>
                 <td style="padding:10px;border:none">
@@ -81,42 +78,27 @@
         <table style="width:100%;border:1px solid black;">
             <thead>
                 <tr>
-                    <th>Vendor Name</th>
-                    <th>Total Gross Weight</th>
-                    <th>Total Tare Weight</th>
-                    <th>Total Net Weight</th>
-                    <th>Total Vehicle Round</th>
+                    <th>Vehicle No</th>
+                    <th>Vehicle Rounds</th>
                 </tr>
             </thead>
             <tbody>
                 @php
-                    $totalGrossWeight = 0;
-                    $totalTareWeight = 0;
-                    $totalNetWeight = 0;
-                    $totalRounds = 0 ;
-                @endphp
-                @foreach ($results as $index => $result)
-                    @php
-                        $totalGrossWeight += $result->total_gross_weight;
-                        $totalTareWeight += $result->total_tare_weight;
-                        $totalNetWeight += $result->total_net_weight;
-                        $totalRounds += $result->total_vehicle_round;
-                    @endphp
-                    <tr>
-                        <td>{{ $result->Party_Name }}</td>
-                        <td>{{ number_format($result->total_gross_weight / 1000, 2) }} T</td>
-                        <td>{{ number_format($result->total_tare_weight / 1000, 2) }} T</td>
-                        <td>{{ number_format($result->total_net_weight / 1000, 2) }} T</td>
-                        <td>{{ $result->total_vehicle_round }}</td>
-                    </tr>
-                @endforeach
+                $totalRounds = 0 ;
+            @endphp
+            @foreach ($results as $index => $result)
+            @php
+                $totalRounds += $result->total_vehicle_round ;
+            @endphp
                 <tr>
-                    <td><strong>Total</strong></td>
-                    <td><strong>{{ number_format($totalGrossWeight / 1000, 2) }} T</strong></td>
-                    <td><strong>{{ number_format($totalTareWeight / 1000, 2) }} T</strong></td>
-                    <td><strong>{{ number_format($totalNetWeight / 1000, 2) }} T</strong></td>
-                    <td><strong>{{ $totalRounds }}</strong></td>
+                    <td>{{ $result->Vehicle_No }}</td>
+                    <td>{{ $result->total_vehicle_round }}</td>
                 </tr>
+            @endforeach
+            <tr>
+                <td><strong>Total</strong></td>
+                <td><strong>{{ $totalRounds }}</strong></td>
+            </tr>
             </tbody>
         </table>
     </div>

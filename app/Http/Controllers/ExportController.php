@@ -152,4 +152,32 @@ class ExportController extends Controller
         return $pdf->download('WardWiseSummaryReport.pdf');
     }
 
+    public function vehicleRoundsPDF(Request $request)
+    {
+        $query = WeightMachine::query();
+
+        if (!empty($request->fromdate) && !empty($request->todate)) {
+            $query->where(function($q) use ($request) {
+                $q->whereBetween('EntryDate', [$request->fromdate, $request->todate])
+                  ->orWhereDate('EntryDate', $request->fromdate)
+                  ->orWhereDate('EntryDate', $request->todate);
+            });
+        }
+
+        $results = $query->selectRaw('Vehicle_No, COUNT(Vehicle_No) as total_vehicle_round')
+                        ->groupBy('Vehicle_No')
+                        ->get();
+
+        $data = [
+            'title' => 'Vehicle Rounds Report',
+            'Name' => 'Vehicle Round',
+            'reportdatetime' => \Carbon\Carbon::parse(now())->format('d-m-Y H:i:s A'),
+            'fromdate' => \Carbon\Carbon::parse($request->fromdate)->format('d-m-Y'),
+            'todate' => \Carbon\Carbon::parse($request->todate)->format('d-m-Y'),
+            'results' => $results,
+        ];
+        $pdf = PDF::loadView('reports.exports.vehicleRoundsPdf', $data)->setPaper('a4', 'landscape');
+        return $pdf->download('vehicleRoundsReport.pdf');
+    }
+
 }
