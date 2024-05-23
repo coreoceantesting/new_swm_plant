@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade as PDF;
+use PDF;
 use App\Models\WeightMachine;
 
 class ExportController extends Controller
