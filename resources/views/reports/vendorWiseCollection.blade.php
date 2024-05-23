@@ -46,7 +46,7 @@
                                             <a href="{{ route('vendorWiseReport') }}" class="btn btn-warning">Cancel</a>
                                         </div>
                                         <div class="col-sm-4">
-                                            <button type="button" class="btn btn-primary" id="pdfSubmit">Download PDF</button>
+                                            <button type="button" title="Download Report" class="btn btn-primary" id="pdfSubmit"><i class="ri-file-pdf-2-line"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -171,7 +171,7 @@
 
 <script>
     document.getElementById('pdfSubmit').addEventListener('click', function() {
-        document.getElementById('addForm').action = "{{ route('generatePDF') }}";
+        document.getElementById('addForm').action = "{{ route('vendorwiseCollectionPDF') }}";
         document.getElementById('addForm').submit();
     });
 </script>

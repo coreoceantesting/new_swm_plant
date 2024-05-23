@@ -49,4 +49,40 @@ class ExportController extends Controller
         $pdf = PDF::loadView('reports.exports.report', $data)->setPaper('a4', 'landscape');
         return $pdf->download('VendorWiseCollectionReport.pdf');
     }
+
+    public function vehicleTypeWisePDF(Request $request)
+    {
+        $query = WeightMachine::query();
+        if (!empty($request->vehicleType)) {
+            $query->where('Field1', $request->vehicleType);
+        }
+
+        if (!empty($request->fromdate) && !empty($request->todate)) {
+            $query->where(function($q) use ($request) {
+                $q->whereBetween('EntryDate', [$request->fromdate, $request->todate])
+                  ->orWhereDate('EntryDate', $request->fromdate)
+                  ->orWhereDate('EntryDate', $request->todate);
+            });
+        }
+
+        $totalGrossWeight = $query->sum('GrossWt');
+        $totalTareWeight = $query->sum('TareWt');
+        $totalNetWeight = $query->sum('NetWt');
+        $results = $query->select('id','Field1', 'Field2','Party_Name','EntryDate', 'Vehicle_No', 'GrossWt', 'TareWt','NetWt')->orderBy('id', 'desc')->get();
+
+        $data = [
+            'title' => 'Vehicle TypeWise Report',
+            'Name' => 'Vehicle Type',
+            'reportdatetime' => date('Y-m-d H:i:s A'),
+            'fromdate' => $request->fromdate,
+            'todate' => $request->todate,
+            'vehicleType' => $request->vehicleType,
+            'results' => $results,
+            'totalGrossWeight' => $totalGrossWeight,
+            'totalTareWeight' => $totalTareWeight,
+            'totalNetWeight' => $totalNetWeight
+        ];
+        $pdf = PDF::loadView('reports.exports.vehicleTypeWisepdf', $data)->setPaper('a4', 'landscape');
+        return $pdf->download('VehicleTypeWiseReport.pdf');
+    }
 }

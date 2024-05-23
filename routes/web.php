@@ -78,7 +78,8 @@ Route::middleware(['auth','PreventBackHistory'])->group(function()
     Route::get('/getImages/{id}', [App\Http\Controllers\ReportController::class, 'getImages'])->name('getImages');
 
     // generate PDF
-    Route::get('/generate-pdf', [App\Http\Controllers\ExportController::class, 'generatePDF'])->name('generatePDF');
+    Route::get('/generate-pdf', [App\Http\Controllers\ExportController::class, 'generatePDF'])->name('vendorwiseCollectionPDF');
+    Route::get('/vehicle-type-wise-pdf', [App\Http\Controllers\ExportController::class, 'vehicleTypeWisePDF'])->name('vehicleTypeWisePDF');
 
 
 });
