@@ -49,7 +49,7 @@
             <td style="width: 70%; text-align: center;">
                 <!-- Company Name and Additional Info -->
                 <h1 style="margin-bottom:-10px;"><strong>Thane Municipal Corporation</strong></h1>
-                <h2 style="margin-bottom:-8px;"><strong>Diager Waste Handling</strong></h2>
+                <h2 style="margin-bottom:-8px;"><strong>Daighar Waste Handling</strong></h2>
                 <h3><strong>{{ $title }}</strong></h3>
             </td>
             <td style="width: 20%;">
