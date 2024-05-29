@@ -84,6 +84,8 @@ Route::middleware(['auth','PreventBackHistory'])->group(function()
     Route::get('/ward-wise-summary-pdf', [App\Http\Controllers\ExportController::class, 'wardWiseSummaryPDF'])->name('wardWiseSummaryPDF');
     Route::get('/vehicle-round-pdf', [App\Http\Controllers\ExportController::class, 'vehicleRoundsPDF'])->name('vehicleRoundsPDF');
 
+    // update all images
+    Route::get('update-images', [App\Http\Controllers\ExportController::class, 'updateImages']);
 
 });
 

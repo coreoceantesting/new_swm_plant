@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use PDF;
 use App\Models\WeightMachine;
+use Illuminate\Support\Facades\Storage;
 
 class ExportController extends Controller
 {
@@ -178,6 +179,47 @@ class ExportController extends Controller
         ];
         $pdf = PDF::loadView('reports.exports.vehicleRoundsPdf', $data)->setPaper('a4', 'landscape');
         return $pdf->download('vehicleRoundsReport.pdf');
+    }
+
+    public function updateImages()
+    {
+        dd('hii');
+        $details = WeightMachine::all();
+
+        foreach ($details as $data) {
+            // List of image fields
+            $imageFields = ['Img1', 'Img2', 'Img3', 'Img4', 'Img5', 'Img6', 'Img7', 'Img8'];
+
+            foreach ($imageFields as $field) {
+                $base64Image = $data->$field;
+
+                if ($base64Image) {
+                    // Extract the base64 string and remove the prefix if exists
+                    if (strpos($base64Image, 'base64,') !== false) {
+                        $base64Image = explode('base64,', $base64Image)[1];
+                    }
+
+                    // Decode the base64 string
+                    $imageData = base64_decode($base64Image);
+
+                    // Generate a unique filename
+                    $filename = uniqid() . '.png'; // Use the appropriate extension if not png
+
+                    // Define the path to save the image
+                    $filePath = 'images/' . $filename;
+
+                    // Save the image to the public directory
+                    Storage::disk('public')->put($filePath, $imageData);
+
+                    // Update the record with the new file path
+                    $data->$field = $filePath;
+                }
+            }
+
+            $data->save();
+        }
+
+        return response()->json(['message' => 'Images updated successfully']);
     }
 
 }
